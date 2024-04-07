@@ -1,14 +1,20 @@
+'use client';
+
 import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
+import headerNavigationLinks from '../../data/headerNavigationLinks';
 
 const MobileNavigation = () => {
   const pathName = usePathname();
   const [navigationShown, setNavigationShown] = React.useState(false);
+
   const variants = {
     enter: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: '100vw' },
   };
+
   return (
     <div className="sm:hidden">
       <button
@@ -40,7 +46,7 @@ const MobileNavigation = () => {
           exit="exit"
           variants={variants}
         >
-          <header>
+          <header className="flex justify-end py-5 px-4">
             <button
               type="button"
               aria-label="Toggle modal"
@@ -61,6 +67,35 @@ const MobileNavigation = () => {
               </svg>
             </button>
           </header>
+          <nav className="fixed mt-8 h-full">
+            <div key="Home" className="px-12 py-4">
+              <Link
+                href="/"
+                onClick={() => setNavigationShown((previous) => !previous)}
+                className={`horizontal-underline font-bold tracking-widest text-gray-900 backdrop:text-2xl dark:text-gray-100 ${
+                  pathName === '/' ? 'horizontal-underline-active' : ''
+                }`}
+              >
+                Home
+              </Link>
+            </div>
+            {headerNavigationLinks.map(({ href, title }) => {
+              const active = pathName?.includes(href);
+              return (
+                <div key={title} className="px-12 py-4">
+                  <Link
+                    href={href}
+                    onClick={() => setNavigationShown((previous) => !previous)}
+                    className={`horizontal-underline font-bold tracking-widest text-gray-900 backdrop:text-2xl dark:text-gray-100 ${
+                      active ? 'horizontal-underline-active' : ''
+                    }`}
+                  >
+                    {title}
+                  </Link>
+                </div>
+              );
+            })}
+          </nav>
         </motion.div>
       </AnimatePresence>
     </div>

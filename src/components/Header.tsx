@@ -5,12 +5,13 @@ import headerNavigationLinks from '@/data/headerNavigationLinks';
 import { usePathname } from 'next/navigation';
 import ThemeSwitch from '@/components/ThemeSwitch';
 import MobileNavigation from '@/components/navigation/MobileNavigation';
+import Container from '@/components/wrappers/Container';
 
 export const Header = () => {
   const pathName = usePathname();
 
   return (
-    <div className="mx-auto max-w-3xl px-4 sm:px-9 xl:max-w-5xl xl:px-0">
+    <Container>
       <header className="z-40 bg-transparent py-5 md:py-10">
         <div className="mx-auto flex max-w-5xl items-center justify-between">
           <div>
@@ -52,6 +53,6 @@ export const Header = () => {
           </div>
         </div>
       </header>
-    </div>
+    </Container>
   );
 };

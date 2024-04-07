@@ -4,6 +4,7 @@ import { siteMetaData } from '@/data/siteMetaData';
 import '@/css/tailwind.css';
 import ThemeProvider from '@/components/providers/ThemeProvider';
 import { Header } from '@/components/Header';
+import LenisProvider from '../components/providers/LenisProvider';
 
 // const space_grotesk = Space_Grotesk({
 //   subsets: ['latin'],
@@ -22,12 +23,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={siteMetaData.language} suppressHydrationWarning>
-      <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FFFFFF" />
-      <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000" />
+      <link rel="apple-touch-icon" sizes="76x76" href="/favicon.ico" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico" />
       <body className="bg-white text-black antialiased dark:bg-black dark:text-white">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <Header />
-          <main>{children}</main>
+          <LenisProvider>
+            <main>{children}</main>
+          </LenisProvider>
         </ThemeProvider>
       </body>
     </html>

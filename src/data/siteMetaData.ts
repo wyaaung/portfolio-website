@@ -4,4 +4,4 @@ export const siteMetaData = {
   headerTitle: 'Wai Yan Aung',
   language: 'en-us',
   theme: 'system', // system, dark or light
-}
+};

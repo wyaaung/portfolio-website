@@ -101,7 +101,7 @@ const config: Config = {
         yellow: colors.amber,
         purple: colors.violet,
       },
-      typography: (theme) => ({
+      typography: (theme: any) => ({
         DEFAULT: {
           css: {
             color: theme('colors.gray.700'),

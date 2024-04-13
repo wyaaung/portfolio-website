@@ -14,9 +14,10 @@
   },
   "dependencies": {
     "@studio-freight/react-lenis": "^0.0.46",
-    "contentlayer": "0.3.4",
-    "date-fns": "^3.6.0",
+    "esbuild": "^0.20.2",
     "framer-motion": "^11.0.25",
+    "github-slugger": "^2.0.0",
+    "mdx-bundler": "^10.0.2",
     "next": "14.1.4",
     "next-contentlayer": "0.3.4",
     "next-themes": "^0.3.0",

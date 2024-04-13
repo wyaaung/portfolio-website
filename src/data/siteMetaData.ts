@@ -3,5 +3,6 @@ export const siteMetaData = {
   author: 'Wai Yan Aung',
   headerTitle: 'Wai Yan Aung',
   language: 'en-us',
+  locale: 'en-US',
   theme: 'light', // system, dark or light
 };

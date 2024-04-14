@@ -1,7 +1,8 @@
 import React from 'react';
-import MainLayout from '@/components/layouts/MainLayout';
-import AuthorLayout from '@/components/layouts/AuthorLayout';
-import { allAuthors } from '../../../.contentlayer/generated';
+import MainLayout from '@/layouts/MainLayout';
+import AuthorLayout from '@/layouts/AuthorLayout';
+import { allAuthors } from 'contentlayer/generated';
+import MDXLayoutRenderer from '@/components/MDXComponents';
 
 const About = () => {
   const author = allAuthors.find((p) => p.slug === 'about');
@@ -13,7 +14,7 @@ const About = () => {
   return (
     <MainLayout>
       <AuthorLayout content={author}>
-        <div>ABOUT</div>
+        <MDXLayoutRenderer content={author} />
       </AuthorLayout>
     </MainLayout>
   );

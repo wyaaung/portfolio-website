@@ -1,5 +1,5 @@
-import { ScrollProvider } from '@/components/providers/ScrollProvider';
-import Hero from '../components/Hero';
+import { ScrollProvider } from '@/providers/ScrollProvider';
+import Hero from '@/components/Hero';
 
 export default function Home() {
   return (

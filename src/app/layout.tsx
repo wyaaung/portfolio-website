@@ -2,9 +2,9 @@
 // import { Space_Grotesk } from 'next/font/google';
 import { siteMetaData } from '@/data/siteMetaData';
 import '@/css/tailwind.css';
-import ThemeProvider from '@/components/providers/ThemeProvider';
+import ThemeProvider from '@/providers/ThemeProvider';
 import { Header } from '@/components/Header';
-import LenisProvider from '../components/providers/LenisProvider';
+import LenisProvider from '@/providers/LenisProvider';
 
 // const space_grotesk = Space_Grotesk({
 //   subsets: ['latin'],

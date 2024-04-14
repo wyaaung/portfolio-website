@@ -5,6 +5,7 @@ import '@/css/tailwind.css';
 import ThemeProvider from '@/providers/ThemeProvider';
 import { Header } from '@/components/Header';
 import LenisProvider from '@/providers/LenisProvider';
+import Footer from '@/components/Footer';
 
 // const space_grotesk = Space_Grotesk({
 //   subsets: ['latin'],
@@ -32,6 +33,7 @@ export default function RootLayout({
           <LenisProvider>
             <main>{children}</main>
           </LenisProvider>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

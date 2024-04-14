@@ -1,6 +1,7 @@
 import React from 'react';
 import MainLayout from '@/layouts/MainLayout';
 import ListLayout from '@/layouts/mdx/ListLayout';
+import { allBlogs } from 'contentlayer/generated';
 
 export const metadata = {
   title: 'About - William (Wai Yan Aung)',
@@ -8,9 +9,11 @@ export const metadata = {
 };
 
 const Blogs = () => {
+  const activeBlogs = allBlogs.filter((p) => p.draft === false);
+
   return (
     <MainLayout>
-      <ListLayout title="Blogs" />
+      <ListLayout blogs={activeBlogs} title="Blogs" />
     </MainLayout>
   );
 };

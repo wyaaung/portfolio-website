@@ -3,9 +3,10 @@
 import React from 'react';
 import { CoreContent } from '@/lib/utils/contentlayer';
 import { Blog } from 'contentlayer/generated';
+import BlogCard from '../../components/blog/BlogCard';
 
 interface Props {
-  blogs: CoreContent<Blog>;
+  blogs: CoreContent<Blog>[];
   title: string;
   initialDisplayBlogs?: CoreContent<Blog>[];
 }
@@ -18,6 +19,18 @@ const ListLayout = ({ blogs, title, initialDisplayBlogs = [] }: Props) => {
           {title}
         </h1>
       </div>
+      <ul>
+        {blogs.map(({ slug, title, tags, summary }, index) => (
+          <BlogCard
+            key={slug}
+            title={title}
+            slug={slug}
+            summary={summary}
+            tags={tags}
+            index={index}
+          />
+        ))}
+      </ul>
     </div>
   );
 };

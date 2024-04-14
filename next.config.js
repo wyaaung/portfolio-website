@@ -1,3 +1,9 @@
+const { withContentlayer } = require('next-contentlayer2');
+
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
   default-src 'self';
@@ -49,15 +55,24 @@ const securityHeaders = [
 ];
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  headers: () => {
-    return [
-      {
-        source: '/(.*)',
-        headers: securityHeaders,
-      },
-    ];
-  },
+module.exports = () => {
+  const plugins = [withContentlayer, withBundleAnalyzer];
+  return plugins.reduce((acc, next) => next(acc), {
+    reactStrictMode: true,
+    pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+    eslint: {
+      dirs: ['app', 'components', 'layouts', 'scripts'],
+    },
+    images: {
+      domains: ['', 'localhost', 'tailwind-nextjs-starter-blog-i18n.vercel.app/', 'picsum.photos'],
+    },
+    async headers() {
+      return [
+        {
+          source: '/(.*)',
+          headers: securityHeaders,
+        },
+      ];
+    },
+  });
 };
-
-export default nextConfig;

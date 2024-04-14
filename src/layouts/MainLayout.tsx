@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import React from 'react';
-import Container from '@/components/wrappers/Container';
+import Container from '@/wrappers/Container';
 
 interface Props {
   children: React.ReactNode;

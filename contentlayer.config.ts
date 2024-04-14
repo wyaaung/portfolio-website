@@ -18,7 +18,7 @@ const computedFields: ComputedFields = {
 
 export const Author = defineDocumentType(() => ({
   name: 'Author',
-  filePathPattern: 'blog/*.mdx',
+  filePathPattern: 'author/**/*.mdx',
   contentType: 'mdx',
   fields: {
     name: { type: 'string', required: true },
@@ -36,7 +36,7 @@ export const Author = defineDocumentType(() => ({
 
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
-  filePathPattern: 'blog/**/*.mdx',
+  filePathPattern: 'blogs/**/*.mdx',
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
@@ -55,7 +55,7 @@ export const Blog = defineDocumentType(() => ({
 }));
 
 export default makeSource({
-  contentDirPath: 'content',
+  contentDirPath: './src/content/',
   documentTypes: [Blog, Author],
   mdx: {
     cwd: process.cwd(),

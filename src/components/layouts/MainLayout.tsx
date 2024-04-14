@@ -8,7 +8,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const Layout = ({ children }: Props) => {
+const MainLayout = ({ children }: Props) => {
   const variants = {
     hidden: { opacity: 0, x: -200 },
     enter: { opacity: 1, x: 0 },
@@ -32,4 +32,4 @@ const Layout = ({ children }: Props) => {
   );
 };
 
-export default Layout;
+export default MainLayout;

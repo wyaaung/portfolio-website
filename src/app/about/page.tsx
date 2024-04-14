@@ -1,11 +1,14 @@
 import React from 'react';
-import Layout from '@/components/layouts/Layout';
+import MainLayout from '@/components/layouts/MainLayout';
+import AuthorLayout from '@/components/layouts/AuthorLayout';
 
 const About = () => {
   return (
-    <Layout>
-      <div>About</div>
-    </Layout>
+    <MainLayout>
+      <AuthorLayout>
+        <div>ABOUT</div>
+      </AuthorLayout>
+    </MainLayout>
   );
 };
 

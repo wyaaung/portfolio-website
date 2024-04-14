@@ -1,4 +1,4 @@
-import slugger from 'github-slugger';
+import GithubSlugger from 'github-slugger';
 import { Heading } from 'mdast';
 import { toString } from 'mdast-util-to-string';
 import { remark } from 'remark';
@@ -6,6 +6,8 @@ import { Toc } from '@/types/Toc';
 import { Parent } from 'unist';
 import { visit } from 'unist-util-visit';
 import { VFile } from 'vfile';
+
+const slugger = new GithubSlugger();
 
 export function remarkTocHeadings() {
   return (tree: Parent, file: VFile) => {

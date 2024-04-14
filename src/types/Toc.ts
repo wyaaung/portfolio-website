@@ -1,5 +1,7 @@
-export type Toc = {
+export type TocItem = {
   value: string
-  depth: number
   url: string
-}[]
+  depth: number
+}
+
+export type Toc = TocItem[]

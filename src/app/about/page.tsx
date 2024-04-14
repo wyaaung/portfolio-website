@@ -1,6 +1,6 @@
 import React from 'react';
 import MainLayout from '@/layouts/MainLayout';
-import AuthorLayout from '@/layouts/AuthorLayout';
+import AuthorLayout from '@/layouts/mdx/AuthorLayout';
 import { allAuthors } from 'contentlayer/generated';
 import MDXLayoutRenderer from '@/components/MDXComponents';
 

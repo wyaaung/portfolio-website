@@ -1,5 +1,6 @@
 import React from 'react';
 import MainLayout from '@/layouts/MainLayout';
+import ListLayout from '@/layouts/mdx/ListLayout';
 
 export const metadata = {
   title: 'About - William (Wai Yan Aung)',
@@ -9,7 +10,7 @@ export const metadata = {
 const Blogs = () => {
   return (
     <MainLayout>
-      <div>Blogs</div>
+      <ListLayout title="Blogs" />
     </MainLayout>
   );
 };

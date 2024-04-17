@@ -6,6 +6,7 @@ import ThemeProvider from '@/providers/ThemeProvider';
 import { Header } from '@/components/Header';
 import LenisProvider from '@/providers/LenisProvider';
 import Footer from '@/components/Footer';
+import Analytics from '@/components/Analytics';
 
 // const space_grotesk = Space_Grotesk({
 //   subsets: ['latin'],
@@ -34,6 +35,7 @@ export default function RootLayout({
             <main>{children}</main>
           </LenisProvider>
           <Footer />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

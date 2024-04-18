@@ -1,8 +1,7 @@
 import React from 'react';
 import MainLayout from '@/layouts/MainLayout';
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
-  console.log(params);
+const BlogPost = ({ params }: { params: { slug: string } }) => {
   return (
     <>
       <MainLayout>
@@ -10,6 +9,6 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       </MainLayout>
     </>
   );
-}
+};
 
-// export default BlogPost;
+export default BlogPost;

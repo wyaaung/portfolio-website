@@ -1,7 +1,27 @@
 import React from 'react';
+import { Metadata } from 'next';
 import MainLayout from '@/layouts/MainLayout';
+import { allBlogs } from 'contentlayer/generated';
 
-const BlogPost = ({ params }: { params: { slug: string } }) => {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const slug = params.slug;
+  const blog = allBlogs.find((p) => p.slug === slug);
+
+  if (!blog) {
+    return {};
+  }
+
+  return {
+    title: blog.title,
+    description: blog.summary,
+  };
+}
+
+const Blog = ({ params }: { params: { slug: string } }) => {
   return (
     <>
       <MainLayout>
@@ -11,4 +31,4 @@ const BlogPost = ({ params }: { params: { slug: string } }) => {
   );
 };
 
-export default BlogPost;
+export default Blog;

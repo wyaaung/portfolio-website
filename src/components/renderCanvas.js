@@ -41,17 +41,17 @@ Line.prototype = {
     t.vy += (pos.y - t.y) * e;
     for (var n, i = 0, a = this.nodes.length; i < a; i++)
       (t = this.nodes[i]),
-        0 < i &&
+      0 < i &&
           ((n = this.nodes[i - 1]),
           (t.vx += (n.x - t.x) * e),
           (t.vy += (n.y - t.y) * e),
           (t.vx += n.vx * E.dampening),
           (t.vy += n.vy * E.dampening)),
-        (t.vx *= this.friction),
-        (t.vy *= this.friction),
-        (t.x += t.vx),
-        (t.y += t.vy),
-        (e *= E.tension);
+      (t.vx *= this.friction),
+      (t.vy *= this.friction),
+      (t.x += t.vx),
+      (t.y += t.vy),
+      (e *= E.tension);
   },
   draw: function () {
     var e,
@@ -85,19 +85,19 @@ function onMousemove(e) {
     e.touches
       ? ((pos.x = e.touches[0].pageX), (pos.y = e.touches[0].pageY))
       : ((pos.x = e.clientX), (pos.y = e.clientY)),
-      e.preventDefault();
+    e.preventDefault();
   }
   function l(e) {
     1 == e.touches.length && ((pos.x = e.touches[0].pageX), (pos.y = e.touches[0].pageY));
   }
   document.removeEventListener('mousemove', onMousemove),
-    document.removeEventListener('touchstart', onMousemove),
-    document.addEventListener('mousemove', c),
-    document.addEventListener('touchmove', c),
-    document.addEventListener('touchstart', l),
-    c(e),
-    o(),
-    render();
+  document.removeEventListener('touchstart', onMousemove),
+  document.addEventListener('mousemove', c),
+  document.addEventListener('touchmove', c),
+  document.addEventListener('touchstart', l),
+  c(e),
+  o(),
+  render();
 }
 
 function render() {

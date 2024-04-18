@@ -6,7 +6,6 @@ import rehypeSlug from 'rehype-slug';
 import remarkCodeTitles from './src/lib/remark-code-title';
 import { extractTocHeadings } from './src/lib/remark-toc-headings';
 
-
 const computedFields: ComputedFields = {
   readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
   slug: {
@@ -31,7 +30,7 @@ export const Author = defineDocumentType(() => ({
     github: { type: 'string' },
     layout: { type: 'string' },
   },
-  computedFields
+  computedFields,
 }));
 
 export const Blog = defineDocumentType(() => ({

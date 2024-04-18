@@ -8,5 +8,5 @@ export const siteMetaData = {
   theme: 'light', // system, dark or light
   linkedin: 'https://www.linkedin.com/in/wyaaung/',
   github: 'https://github.com/wyaaung',
-  email: 'wya.aung@gmail.com'
+  email: 'wya.aung@gmail.com',
 };

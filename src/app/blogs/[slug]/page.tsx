@@ -27,19 +27,19 @@ export async function generateMetadata({
 
 const BlogPage = ({ params }: { params: { slug: string } }) => {
   const slug = params.slug;
-  const sortedPosts = sortBlogs(allBlogs);
+  const sortedBlogs = sortBlogs(allBlogs);
 
-  const post = sortedPosts.find((p) => p.slug === slug) as Blog;
+  const blog = sortedBlogs.find((blog) => blog.slug === slug) as Blog;
 
-  if (!post) {
+  if (!blog) {
     return notFound();
   }
 
   return (
     <>
       <MainLayout>
-        <BlogLayout content={post}>
-          <MDXLayoutRenderer toc={post.toc} content={post} />
+        <BlogLayout content={blog}>
+          <MDXLayoutRenderer toc={blog.toc} content={blog} />
         </BlogLayout>
       </MainLayout>
     </>

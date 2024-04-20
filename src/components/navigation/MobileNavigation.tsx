@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
-import headerNavigationLinks from '../../data/headerNavigationLinks';
+import headerNavigationLinks from '@/data/headerNavigationLinks';
 
 const MobileNavigation = () => {
   const pathName = usePathname();

@@ -3,7 +3,7 @@ import MainLayout from '@/layouts/MainLayout';
 import { allBlogs } from 'contentlayer/generated';
 import { sortBlogs } from '@/lib/utils/contentlayer';
 import { BLOGS_PER_PAGE } from '@/types/constants';
-import ListLayout from '@/layouts/mdx/ListLayout';
+import BlogListLayout from '@/layouts/mdx/BlogListLayout';
 
 export const metadata = {
   title: 'Blogs - William (Wai Yan Aung)',
@@ -27,7 +27,7 @@ const Blogs = ({ params }: { params: { pageNumber: string } }) => {
 
   return (
     <MainLayout>
-      <ListLayout
+      <BlogListLayout
         blogs={blogs}
         initialDisplayBlogs={initialDisplayBlogs}
         pagination={pagination}

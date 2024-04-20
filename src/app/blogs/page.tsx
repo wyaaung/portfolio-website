@@ -1,6 +1,6 @@
 import React from 'react';
 import MainLayout from '@/layouts/MainLayout';
-import ListLayout from '@/layouts/mdx/ListLayout';
+import BlogListLayout from '@/layouts/mdx/BlogListLayout';
 import { allBlogs } from 'contentlayer/generated';
 import { sortBlogs } from '@/lib/utils/contentlayer';
 import { BLOGS_PER_PAGE } from '@/types/constants';
@@ -21,7 +21,7 @@ const Blogs = () => {
 
   return (
     <MainLayout>
-      <ListLayout
+      <BlogListLayout
         blogs={activeBlogs}
         initialDisplayBlogs={initialDisplayBlogs}
         pagination={pagination}

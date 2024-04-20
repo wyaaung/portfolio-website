@@ -5,6 +5,7 @@ import { allBlogs, Blog } from 'contentlayer/generated';
 import BlogLayout from '@/layouts/mdx/BlogLayout';
 import MDXLayoutRenderer from '@/components/MDXComponents';
 import { sortBlogs } from '@/lib/utils/contentlayer';
+import { notFound } from 'next/navigation';
 
 export async function generateMetadata({
   params,
@@ -29,6 +30,10 @@ const BlogPage = ({ params }: { params: { slug: string } }) => {
   const sortedPosts = sortBlogs(allBlogs);
 
   const post = sortedPosts.find((p) => p.slug === slug) as Blog;
+
+  if (!post) {
+    return notFound();
+  }
 
   return (
     <>

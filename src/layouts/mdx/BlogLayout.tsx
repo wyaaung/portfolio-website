@@ -1,6 +1,6 @@
 import React from 'react';
-import { CoreContent } from '@/lib/utils/contentlayer';
 import { Blog } from 'contentlayer/generated';
+import { CoreContent } from '@/lib/utils/contentlayer';
 import PageTitle from '@/components/blog/PageTitle';
 import { siteMetaData } from '@/data/siteMetaData';
 
@@ -37,6 +37,14 @@ const BlogLayout = ({ content, children, next, prev }: Props) => {
           </dd>
         </dl>
       </header>
+      <div
+        className="divide-y divide-gray-200 font-medium dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0"
+        style={{ gridTemplateRows: 'auto 1fr' }}
+      >
+        <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-4 xl:row-span-2 xl:pb-0">
+          <div className="prose max-w-none pt-8 pb-8 dark:prose-dark">{children}</div>
+        </div>
+      </div>
     </article>
   );
 };

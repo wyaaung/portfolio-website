@@ -3,7 +3,7 @@ import { useMDXComponent } from 'next-contentlayer2/hooks';
 import { coreContent } from '@/lib/utils/contentlayer';
 import { MDXComponents } from 'mdx/types';
 import Image from 'next/image';
-import TOCInline from '@/components/TOCInline';
+import TableOfContentInline from '@/components/TableOfContentInline';
 import CustomLink from '@/components/Link';
 import Pre from '@/components/Pre';
 import LinkButton from '@/components/LinkButton';
@@ -14,7 +14,7 @@ interface MDXLayout {
 
 const components: MDXComponents = {
   Image,
-  TOCInline,
+  TableOfContentInline,
   a: CustomLink,
   pre: Pre,
   LinkButton,

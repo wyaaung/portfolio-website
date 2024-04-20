@@ -31,7 +31,7 @@ const Blogs = ({ params }: { params: { pageNumber: string } }) => {
         blogs={blogs}
         initialDisplayBlogs={initialDisplayBlogs}
         pagination={pagination}
-        title="All Posts"
+        title="Blogs"
       />
     </MainLayout>
   );

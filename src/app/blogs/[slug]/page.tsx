@@ -1,7 +1,10 @@
 import React from 'react';
 import { Metadata } from 'next';
 import MainLayout from '@/layouts/MainLayout';
-import { allBlogs } from 'contentlayer/generated';
+import { allBlogs, Blog } from 'contentlayer/generated';
+import BlogLayout from '@/layouts/mdx/BlogLayout';
+import MDXLayoutRenderer from '@/components/MDXComponents';
+import { sortBlogs } from '@/lib/utils/contentlayer';
 
 export async function generateMetadata({
   params,
@@ -21,14 +24,21 @@ export async function generateMetadata({
   };
 }
 
-const Blog = ({ params }: { params: { slug: string } }) => {
+const BlogPage = ({ params }: { params: { slug: string } }) => {
+  const slug = params.slug;
+  const sortedPosts = sortBlogs(allBlogs);
+
+  const post = sortedPosts.find((p) => p.slug === slug) as Blog;
+
   return (
     <>
       <MainLayout>
-        <span>Under Construction</span>
+        <BlogLayout content={post}>
+          <MDXLayoutRenderer toc={post.toc} content={post} />
+        </BlogLayout>
       </MainLayout>
     </>
   );
 };
 
-export default Blog;
+export default BlogPage;

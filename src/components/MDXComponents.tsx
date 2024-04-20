@@ -10,6 +10,7 @@ import LinkButton from '@/components/LinkButton';
 
 interface MDXLayout {
   content: Blog | Author;
+  [key: string]: unknown;
 }
 
 const components: MDXComponents = {

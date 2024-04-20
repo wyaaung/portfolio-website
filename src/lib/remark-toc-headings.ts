@@ -36,5 +36,6 @@ export function remarkTocHeadings() {
  */
 export async function extractTocHeadings(markdown: string): Promise<TableOfContent> {
   const vfile = await remark().use(remarkTocHeadings).process(markdown);
+  // @ts-ignore
   return vfile.data.toc;
 }

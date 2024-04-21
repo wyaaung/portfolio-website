@@ -1,1 +1,1 @@
-export const BLOGS_PER_PAGE = 5;
+export const BLOGS_PER_PAGE = 6;

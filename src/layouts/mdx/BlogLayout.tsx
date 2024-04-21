@@ -2,13 +2,7 @@ import React from 'react';
 import { Blog } from 'contentlayer/generated';
 import { CoreContent } from '@/lib/utils/contentlayer';
 import PageTitle from '@/components/blog/PageTitle';
-import { siteMetaData } from '@/data/siteMetaData';
-
-const blogDateTemplate: Intl.DateTimeFormatOptions = {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-};
+import formatDate from '@/lib/utils/formatDate';
 
 interface Props {
   content: CoreContent<Blog>;
@@ -27,11 +21,7 @@ const BlogLayout = ({ content, children, next, prev }: Props) => {
         <dl>
           <dt className="sr-only">Published on</dt>
           <dd className="flex flex-col justify-center text-base font-medium leading-6 text-white sm:flex-row sm:space-x-2">
-            <div className="flex items-center justify-center space-x-2">
-              <time dateTime={date}>
-                {`${new Date(date).toLocaleDateString(siteMetaData.locale, blogDateTemplate)}`}
-              </time>
-            </div>
+            <div className="flex items-center justify-center space-x-2">{formatDate(date)}</div>
             <span className="hidden sm:block">-</span>
             <span>{readingTime.text}</span>
           </dd>

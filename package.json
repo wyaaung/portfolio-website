@@ -13,7 +13,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@next/bundle-analyzer": "~14.2.2",
+    "@next/bundle-analyzer": "~14.2.3",
     "@studio-freight/react-lenis": "~0.0.47",
     "@tailwindcss/forms": "~0.5.7",
     "@tailwindcss/typography": "~0.5.12",
@@ -23,7 +23,7 @@
     "esbuild": "~0.20.2",
     "framer-motion": "~11.1.7",
     "github-slugger": "~2.0.0",
-    "next": "14.2.2",
+    "next": "14.2.3",
     "next-contentlayer2": "0.4.4",
     "next-themes": "~0.3.0",
     "react": "~18.2.0",
@@ -42,7 +42,7 @@
     "@typescript-eslint/eslint-plugin": "~6.21.0",
     "autoprefixer": "~10.0.1",
     "eslint": "~8",
-    "eslint-config-next": "14.2.2",
+    "eslint-config-next": "14.2.3",
     "husky": "~9.0.10",
     "lint-staged": "~15.2.2",
     "postcss": "~8",

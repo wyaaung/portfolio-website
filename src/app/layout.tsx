@@ -1,7 +1,9 @@
 // import type { Metadata } from 'next';
 // import { Space_Grotesk } from 'next/font/google';
-import { siteMetaData } from '@/data/siteMetaData';
+// CSS
+import '@/css/prism.css';
 import '@/css/tailwind.css';
+import { siteMetaData } from '@/data/siteMetaData';
 import ThemeProvider from '@/providers/ThemeProvider';
 import { Header } from '@/components/Header';
 import LenisProvider from '@/providers/LenisProvider';

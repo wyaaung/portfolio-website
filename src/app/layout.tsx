@@ -5,7 +5,7 @@ import '@/css/prism.css';
 import '@/css/tailwind.css';
 import { siteMetaData } from '@/data/siteMetaData';
 import ThemeProvider from '@/providers/ThemeProvider';
-import { Header } from '@/components/Header';
+import { Header } from '@/components/Navigation/Header';
 import LenisProvider from '@/providers/LenisProvider';
 import Footer from '@/components/Footer';
 import Analytics from '@/components/Analytics';

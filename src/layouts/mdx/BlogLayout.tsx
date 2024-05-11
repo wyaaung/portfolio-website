@@ -1,7 +1,7 @@
 import React from 'react';
 import { Blog } from 'contentlayer/generated';
 import { CoreContent } from '@/lib/utils/contentlayer';
-import PageTitle from '@/components/blog/PageTitle';
+import PageTitle from '@/components/Blog/PageTitle';
 import formatDate from '@/lib/utils/formatDate';
 
 interface Props {

@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Tag from '@/components/blog/tag/Tag';
+import Tag from '@/components/Blog/Tag/Tag';
 
 interface Props {
   title: string;

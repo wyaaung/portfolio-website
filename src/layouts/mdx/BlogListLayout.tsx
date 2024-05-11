@@ -3,14 +3,11 @@
 import React from 'react';
 import { CoreContent, getAllTags } from '@/lib/utils/contentlayer';
 import { allBlogs, Blog } from 'contentlayer/generated';
-import BlogCard from '@/components/blog/BlogCard';
+import BlogCard from '@/components/Blog/BlogCard';
 import Pagination from '@/components/Pagination';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-// import { slug } from 'github-slugger';
-// import Tag from '@/components/blog/tag/Tag';
-// import BlogSearch from '@/components/blog/BlogSearch';
-import TagList from '@/components/blog/tag/TagList';
+import TagList from '@/components/Blog/Tag/TagList';
 
 interface Props {
   blogs: CoreContent<Blog>[];
@@ -28,16 +25,10 @@ const BlogListLayout = ({
 }: // showSearchBar = true,
 Props) => {
   const pathname = usePathname();
-  // const [searchValue, setSearchValue] = React.useState('');
 
   const tagCounts = getAllTags(allBlogs);
   const tagKeys = Object.keys(tagCounts);
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a]);
-
-  // const filteredBlogPosts = blogs.filter((blog) => {
-  //   const searchContent = blog.title + blog.summary + blog.tags?.join(' ');
-  //   return searchContent.toLowerCase().includes(searchValue.toLowerCase());
-  // });
 
   const displayBlogs = initialDisplayBlogs.length > 0 ? initialDisplayBlogs : blogs;
 

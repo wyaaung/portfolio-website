@@ -3,7 +3,7 @@ import { slug } from 'github-slugger';
 import MainLayout from '@/layouts/MainLayout';
 import { allBlogs } from 'contentlayer/generated';
 import { allCoreContent, sortBlogs } from '@/lib/utils/contentlayer';
-import BlogListLayout from '../../../layouts/mdx/BlogListLayout';
+import BlogListLayout from '@/layouts/mdx/BlogListLayout';
 
 export const metadata = {
   title: 'Blogs - William (Wai Yan Aung)',

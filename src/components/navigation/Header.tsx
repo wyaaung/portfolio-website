@@ -4,7 +4,7 @@ import Link from 'next/link';
 import headerNavigationLinks from '@/data/headerNavigationLinks';
 import { usePathname } from 'next/navigation';
 import ThemeSwitch from '@/components/ThemeSwitch';
-import MobileNavigation from '@/components/navigation/MobileNavigation';
+import MobileNavigation from '@/components/Navigation/MobileNavigation';
 import Container from '@/wrappers/Container';
 
 export const Header = () => {

@@ -27,7 +27,6 @@ export function remarkTocHeadings() {
   };
 }
 
-
 /**
  * Passes markdown file through remark to extract TOC headings
  *
@@ -36,6 +35,6 @@ export function remarkTocHeadings() {
  */
 export async function extractTocHeadings(markdown: string): Promise<TableOfContent> {
   const vfile = await remark().use(remarkTocHeadings).process(markdown);
-  // @ts-ignore
+  // @ts-expect-error  Can Be Nullable
   return vfile.data.toc;
 }

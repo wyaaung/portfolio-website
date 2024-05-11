@@ -22,7 +22,7 @@ const TagList = ({ tags, tagCounts, pathname }: Props) => {
               <Link
                 href={`/tags/${slug(tag)}`}
                 className="px-3 py-2 text-sm font-medium uppercase text-gray-500 hover:text-cyan-500 dark:text-gray-300 dark:hover:text-cyan-500"
-                aria-label={`View posts tagged ${tag}`}
+                aria-label={`View blogs tagged ${tag}`}
               >
                 {`${tag} (${tagCounts[tag]})`}
               </Link>

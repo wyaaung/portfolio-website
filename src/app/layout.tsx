@@ -31,7 +31,7 @@ export default function RootLayout({
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico" />
       <body className="bg-white text-black antialiased dark:bg-black dark:text-white">
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Header />
           <LenisProvider>
             <main>{children}</main>

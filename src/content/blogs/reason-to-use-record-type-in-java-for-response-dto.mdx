@@ -1,0 +1,60 @@
+---
+title: 'Why Use the Record Type in Java for the Response DTO?'
+date: '2023-10-18'
+tags: ['Spring', 'Java']
+draft: false
+summary: 'Why Use the Record Type in Java for the Response DTO?'
+---
+
+<TableOfContentInline tableOfContentItems={props.toc} />
+
+Java continually evolves to provide developers with a better programming experience. The introduction of 'Record' as a preview feature in Java 14 exemplifies this effort.
+
+This post will explore the concept of Java's 'Record' and the reasons for its usage.
+
+# What is a Record?
+
+In Java, a 'Record' is a new type that allows for the concise definition of immutable objects that only contain data.
+
+In traditional Java, defining a data-only class required a lot of boilerplate code, including constructors, getters, equals(), hashCode(), toString(), and various other methods.
+
+Records alleviate this inconvenience by enabling data representation with a more concise syntax.
+
+```java
+public record ItemResponseDto (
+    @Schema(description = "Item ID", example = "1")
+    Long itemId,
+
+    @Schema(description = "User information")
+    UserResponseDto user,
+
+    @Schema(description = "Item like count")
+    int itemLikeCount
+) {
+  public ItemResponseDto(User user, Item item) {
+    this(
+      item.getId(),
+      new UserResponseDto(user),
+      item.getLikeCount()
+    );
+  }
+}
+```
+
+# Characteristics of Records
+
+1. **Immutability**: All fields in a Record are immutable. Once created, their values cannot be changed.
+2. **Automatic Provision of Standard Methods**: Methods such as equals(), hashCode(), and toString() are automatically provided.
+3. **Restricted Inheritance**: Records cannot extend other classes, nor can they be extended.
+
+# Why Use Records?
+
+1. **Conciseness**: Reduces boilerplate code when defining data-only classes like DTOs.
+2. **Clear Intent**: Using Records clearly indicates that the class is meant for data only.
+3. **Guaranteed Immutability**: Ensures data immutability, minimizing bugs and enhancing code stability.
+
+# Conclusion
+
+Java Records simplify the definition of data-only classes while ensuring code stability and clarity.
+
+When defining objects that represent data and require reduced boilerplate code, consider using 'Record'.

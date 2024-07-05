@@ -19,8 +19,8 @@ const LinkButton = ({
   focus:[background-size:100%_100%] 
   motion-safe:transition-all
   motion-safe:duration-300 
-  dark:from-cyan-500
-  dark:to-cyan-500"
+  dark:from-cyan-700
+  dark:to-cyan-700"
       href={href}
       {...rest}
     />

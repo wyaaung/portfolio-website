@@ -8,7 +8,7 @@ html::-webkit-scrollbar {
 
 .horizontal-underline {
   border-bottom-width: 0;
-  background-image: linear-gradient(transparent, transparent), linear-gradient(#06b6d4, #06b6d4);
+  background-image: linear-gradient(transparent, transparent), linear-gradient(#0e7490, #0e7490);
   background-size: 0 3px;
   background-position: 0 100%;
   background-repeat: no-repeat;
@@ -26,9 +26,9 @@ html::-webkit-scrollbar {
 }
 
 .underline-magical {
-  @apply bg-gradient-to-r from-cyan-500 to-cyan-500 bg-no-repeat 
+  @apply bg-gradient-to-r from-cyan-700 to-cyan-700 bg-no-repeat 
   no-underline [background-position:0_100%]
   [background-size:100%_0.2em] focus:[background-size:100%_100%] hover:text-white
   hover:[background-size:100%_100%] motion-safe:transition-all
-  motion-safe:duration-300 dark:from-cyan-500 dark:to-cyan-500;
+  motion-safe:duration-300 dark:from-cyan-700 dark:to-cyan-700;
 }

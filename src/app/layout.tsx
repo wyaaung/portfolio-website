@@ -1,6 +1,4 @@
-// import type { Metadata } from 'next';
-// import { Space_Grotesk } from 'next/font/google';
-// CSS
+import type { Metadata } from 'next';
 import '@/css/prism.css';
 import '@/css/tailwind.css';
 import { siteMetaData } from '@/data/siteMetaData';
@@ -10,15 +8,11 @@ import LenisProvider from '@/providers/LenisProvider';
 import Footer from '@/components/Footer';
 import Analytics from '@/components/Analytics';
 
-// const space_grotesk = Space_Grotesk({
-//   subsets: ['latin'],
-//   display: 'swap',
-//   variable: '--font-space-grotesk',
-// });
-
-// export const metadata: Metadata = {
-//   title: siteMetaData.title,
-// };
+export const metadata: Metadata = {
+  title: siteMetaData.title,
+  description: siteMetaData.description,
+  metadataBase: new URL('https://wyaaung.vercel.app'),
+};
 
 export default function RootLayout({
   children,

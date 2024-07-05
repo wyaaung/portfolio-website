@@ -61,7 +61,10 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <canvas className="bg-skin-base pointer-events-none absolute inset-0" id="canvas"></canvas>
+      <canvas
+        className="bg-skin-base pointer-events-none absolute inset-0 w-full"
+        id="canvas"
+      ></canvas>
     </div>
   );
 };

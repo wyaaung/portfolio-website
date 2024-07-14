@@ -32,7 +32,7 @@ const Intro = () => {
   return (
     <div
       ref={introRef}
-      className="relative z-10 bg-white text-black dark:bg-black  dark:text-white"
+      className="relative z-10 bg-white text-black dark:bg-gray-950 dark:text-white"
       id="intro"
     >
       <div className="mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-10 py-24 text-4xl font-semibold tracking-tight md:py-28 md:text-6xl lg:px-20 lg:py-3 lg:text-7xl">

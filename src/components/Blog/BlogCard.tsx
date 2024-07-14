@@ -27,7 +27,7 @@ const BlogCard = ({ title, summary, tags, slug, showTags = true, index }: Props)
           <div className="space-y-3 xl:col-span-4">
             <span className="text-2xl font-bold leading-8 tracking-tight">
               <Link href={`/blogs/${slug}`}>
-                <span className="text-gray-900 dark:text-gray-100 hover:text-cyan-700  dark:hover:text-cyan-700">
+                <span className="text-gray-900 dark:text-gray-100 hover:text-cyan-500  dark:hover:text-cyan-500">
                   {title}
                 </span>
               </Link>

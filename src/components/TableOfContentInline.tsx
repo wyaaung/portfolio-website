@@ -60,7 +60,7 @@ const TableOfContentInline = ({
           <li key={index}>
             <a
               href={nestedTableofContentItem.url}
-              className="not-prose border-b border-cyan-400 no-underline dark:border-cyan-700"
+              className="not-prose border-b border-cyan-400 no-underline dark:border-cyan-500"
             >
               {nestedTableofContentItem.value}
             </a>

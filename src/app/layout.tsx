@@ -24,7 +24,7 @@ export default function RootLayout({
       <link rel="apple-touch-icon" sizes="76x76" href="/favicon.ico" />
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico" />
-      <body className="bg-white text-black antialiased dark:bg-black dark:text-white">
+      <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Header />
           <LenisProvider>

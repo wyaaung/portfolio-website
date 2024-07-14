@@ -29,7 +29,7 @@ const AuthorLayout = ({ children, content }: Props) => {
           />
         </div>
       </div>
-      <div className="prose max-w-none pb-8 text-justify text-sm dark:prose-dark md:text-lg xl:col-span-2">
+      <div className="prose max-w-none pb-8 text-justify text-sm leading-6 dark:prose-dark md:text-lg md:leading-8 xl:col-span-2">
         {children}
       </div>
     </div>

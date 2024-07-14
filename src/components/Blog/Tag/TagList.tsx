@@ -11,17 +11,17 @@ interface Props {
 const TagList = ({ tags, tagCounts, pathname }: Props) => {
   return (
     <ul>
-      {tags.map((tag) => {
+      {tags.sort().map((tag) => {
         return (
           <li key={tag} className="my-3">
             {pathname.split('/tags/')[1] === slug(tag) ? (
-              <h3 className="inline px-3 py-2 text-sm font-bold uppercase text-cyan-700">
+              <h3 className="inline px-3 py-2 text-sm font-bold uppercase text-cyan-500">
                 {`${tag} (${tagCounts[tag]})`}
               </h3>
             ) : (
               <Link
                 href={`/tags/${slug(tag)}`}
-                className="px-3 py-2 text-sm font-medium uppercase text-gray-500 hover:text-cyan-700 dark:text-gray-300 dark:hover:text-cyan-700"
+                className="px-3 py-2 text-sm font-medium uppercase text-gray-500 hover:text-cyan-500 dark:text-gray-300 dark:hover:text-cyan-500"
                 aria-label={`View blogs tagged ${tag}`}
               >
                 {`${tag} (${tagCounts[tag]})`}

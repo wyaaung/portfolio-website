@@ -22,7 +22,7 @@
     "esbuild": "^0.23.0",
     "framer-motion": "^11.3.2",
     "github-slugger": "^2.0.0",
-    "next": "14.2.4",
+    "next": "14.2.5",
     "next-contentlayer2": "0.4.4",
     "next-themes": "^0.3.0",
     "react": "^18.3.1",

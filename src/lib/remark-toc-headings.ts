@@ -1,11 +1,12 @@
 import GithubSlugger from 'github-slugger';
-import { Heading } from 'mdast';
+import type { Heading } from 'mdast';
 import { toString } from 'mdast-util-to-string';
 import { remark } from 'remark';
-import { TableOfContent } from '@/types/TableOfContent';
-import { Parent } from 'unist';
+import type { Parent } from 'unist';
 import { visit } from 'unist-util-visit';
-import { VFile } from 'vfile';
+import type { VFile } from 'vfile';
+
+import type { TableOfContent } from '@/types/TableOfContent';
 
 const slugger = new GithubSlugger();
 

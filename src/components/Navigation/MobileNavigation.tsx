@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
+
 import headerNavigationLinks from '@/data/headerNavigationLinks';
 
 const MobileNavigation = () => {
@@ -19,7 +20,7 @@ const MobileNavigation = () => {
     <div className="sm:hidden">
       <button
         type="button"
-        className="ml-1 mr-1 h-8 w-8 rounded py-1"
+        className="ml-1 mr-1 h-10 w-10 rounded p-1"
         aria-label="Toggle Menu"
         onClick={() => setNavigationShown((previous) => !previous)}
       >
@@ -46,7 +47,7 @@ const MobileNavigation = () => {
           exit="exit"
           variants={variants}
         >
-          <header className="flex justify-end py-5 px-4">
+          <header className="flex justify-end p-5">
             <button
               type="button"
               aria-label="Toggle modal"

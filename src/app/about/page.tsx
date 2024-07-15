@@ -1,8 +1,9 @@
+import { allAuthors } from 'contentlayer/generated';
 import React from 'react';
+
+import MDXLayoutRenderer from '@/components/MDXComponents';
 import MainLayout from '@/layouts/MainLayout';
 import AuthorLayout from '@/layouts/mdx/AuthorLayout';
-import { allAuthors } from 'contentlayer/generated';
-import MDXLayoutRenderer from '@/components/MDXComponents';
 
 export const metadata = {
   title: 'About - William (Wai Yan Aung)',

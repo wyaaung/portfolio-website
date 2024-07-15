@@ -1,6 +1,7 @@
 'use client';
 
-import { DetailedHTMLProps, HTMLAttributes, useRef, useState } from 'react';
+import type { DetailedHTMLProps, HTMLAttributes} from 'react';
+import { useRef, useState } from 'react';
 
 const Pre = ({ children }: DetailedHTMLProps<HTMLAttributes<HTMLPreElement>, HTMLPreElement>) => {
   const textInput = useRef<HTMLDivElement>(null);

@@ -1,5 +1,5 @@
-import type { Document, MDX } from 'contentlayer2/core';
 import type { Blog } from 'contentlayer/generated';
+import type { Document, MDX } from 'contentlayer2/core';
 import { slug } from 'github-slugger';
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -27,7 +27,7 @@ export function dateSortDesc(a: string, b: string) {
  * @param {string} [dateKey='date']
  * @return {*}
  */
-export function sortBlogs<T extends MDXDocumentDate>(allBlogs: T[], dateKey: string = 'date') {
+export function sortBlogs<T extends MDXDocumentDate>(allBlogs: T[], dateKey = 'date') {
   return allBlogs.sort((a, b) => dateSortDesc(a[dateKey], b[dateKey]));
 }
 

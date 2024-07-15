@@ -1,13 +1,16 @@
 'use client';
 
-import React from 'react';
-import { CoreContent, getAllTags } from '@/lib/utils/contentlayer';
-import { allBlogs, Blog } from 'contentlayer/generated';
-import BlogCard from '@/components/Blog/BlogCard';
-import Pagination from '@/components/Pagination';
-import { usePathname } from 'next/navigation';
+import type { Blog } from 'contentlayer/generated';
+import { allBlogs } from 'contentlayer/generated';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import type React from 'react';
+
+import BlogCard from '@/components/Blog/BlogCard';
 import TagList from '@/components/Blog/Tag/TagList';
+import Pagination from '@/components/Pagination';
+import type { CoreContent} from '@/lib/utils/contentlayer';
+import { getAllTags } from '@/lib/utils/contentlayer';
 
 interface Props {
   blogs: CoreContent<Blog>[];

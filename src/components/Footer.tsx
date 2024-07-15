@@ -1,9 +1,10 @@
-import React from 'react';
 import Link from 'next/link';
-import Container from '@/wrappers/Container';
+import React from 'react';
 import { AiFillLinkedin } from 'react-icons/ai';
-import { siteMetaData } from '@/data/siteMetaData';
 import { FaGithub } from 'react-icons/fa';
+
+import { siteMetaData } from '@/data/siteMetaData';
+import Container from '@/wrappers/Container';
 
 const Footer = () => {
   return (

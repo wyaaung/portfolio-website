@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import React from 'react';
+
 import Tag from '@/components/Blog/Tag/Tag';
 
 interface Props {

@@ -1,9 +1,10 @@
-import React from 'react';
-import MainLayout from '@/layouts/MainLayout';
 import { allBlogs } from 'contentlayer/generated';
+import React from 'react';
+
+import MainLayout from '@/layouts/MainLayout';
+import BlogListLayout from '@/layouts/mdx/BlogListLayout';
 import { sortBlogs } from '@/lib/utils/contentlayer';
 import { BLOGS_PER_PAGE } from '@/types/constants';
-import BlogListLayout from '@/layouts/mdx/BlogListLayout';
 
 export const metadata = {
   title: 'Blogs - William (Wai Yan Aung)',

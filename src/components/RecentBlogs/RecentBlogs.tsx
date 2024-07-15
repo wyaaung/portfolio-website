@@ -1,7 +1,8 @@
-import React from 'react';
-import { Blog } from 'contentlayer/generated';
-import BlogCard from '@/components/Blog/BlogCard';
+import type { Blog } from 'contentlayer/generated';
 import Link from 'next/link';
+import React from 'react';
+
+import BlogCard from '@/components/Blog/BlogCard';
 import { MAX_RECENT_BLOG } from '@/types/constants';
 
 interface RecentBlogsProps {

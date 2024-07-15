@@ -1,10 +1,12 @@
-import React from 'react';
-import { Metadata } from 'next';
+import type { Blog } from 'contentlayer/generated';
+import { allBlogs } from 'contentlayer/generated';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { allBlogs, Blog } from 'contentlayer/generated';
+import React from 'react';
+
+import MDXLayoutRenderer from '@/components/MDXComponents';
 import MainLayout from '@/layouts/MainLayout';
 import BlogLayout from '@/layouts/mdx/BlogLayout';
-import MDXLayoutRenderer from '@/components/MDXComponents';
 import { sortBlogs } from '@/lib/utils/contentlayer';
 
 export async function generateMetadata({

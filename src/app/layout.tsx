@@ -1,12 +1,14 @@
-import type { Metadata } from 'next';
 import '@/css/prism.css';
 import '@/css/tailwind.css';
-import { siteMetaData } from '@/data/siteMetaData';
-import ThemeProvider from '@/providers/ThemeProvider';
-import { Header } from '@/components/Navigation/Header';
-import LenisProvider from '@/providers/LenisProvider';
-import Footer from '@/components/Footer';
+
+import type { Metadata } from 'next';
+
 import Analytics from '@/components/Analytics';
+import Footer from '@/components/Footer';
+import { Header } from '@/components/Navigation/Header';
+import { siteMetaData } from '@/data/siteMetaData';
+import LenisProvider from '@/providers/LenisProvider';
+import ThemeProvider from '@/providers/ThemeProvider';
 
 export const metadata: Metadata = {
   title: siteMetaData.title,

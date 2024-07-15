@@ -1,10 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import headerNavigationLinks from '@/data/headerNavigationLinks';
 import { usePathname } from 'next/navigation';
-import ThemeSwitch from '@/components/ThemeSwitch';
+
 import MobileNavigation from '@/components/Navigation/MobileNavigation';
+import SearchButton from '@/components/SearchButton';
+import ThemeSwitch from '@/components/ThemeSwitch';
+import headerNavigationLinks from '@/data/headerNavigationLinks';
 import Container from '@/wrappers/Container';
 
 export const Header = () => {
@@ -47,6 +49,7 @@ export const Header = () => {
               })}
             </div>
             <div className="flex items-center">
+              <SearchButton />
               <ThemeSwitch />
               <MobileNavigation />
             </div>

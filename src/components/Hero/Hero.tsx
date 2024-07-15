@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React from 'react';
 import { HiOutlineArrowNarrowDown } from 'react-icons/hi';
+
 import { renderCanvas } from './renderCanvas';
 
 const Hero = () => {

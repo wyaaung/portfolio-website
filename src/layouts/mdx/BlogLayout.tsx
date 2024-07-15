@@ -1,7 +1,8 @@
-import React from 'react';
-import { Blog } from 'contentlayer/generated';
-import { CoreContent } from '@/lib/utils/contentlayer';
+import type { Blog } from 'contentlayer/generated';
+import type React from 'react';
+
 import PageTitle from '@/components/Blog/PageTitle';
+import type { CoreContent } from '@/lib/utils/contentlayer';
 import formatDate from '@/lib/utils/formatDate';
 
 interface Props {

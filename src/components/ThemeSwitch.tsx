@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import { BsMoonFill, BsSunFill } from 'react-icons/bs';
 import React from 'react';
+import { BsMoonFill, BsSunFill } from 'react-icons/bs';
 
 const ThemeSwitch = () => {
   const [mounted, setMounted] = React.useState(false);

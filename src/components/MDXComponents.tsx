@@ -1,12 +1,13 @@
-import { Author, Blog } from 'contentlayer/generated';
-import { useMDXComponent } from 'next-contentlayer2/hooks';
-import { coreContent } from '@/lib/utils/contentlayer';
-import { MDXComponents } from 'mdx/types';
+import type { Author, Blog } from 'contentlayer/generated';
+import type { MDXComponents } from 'mdx/types';
 import Image from 'next/image';
-import TableOfContentInline from '@/components/TableOfContentInline';
+import { useMDXComponent } from 'next-contentlayer2/hooks';
+
 import CustomLink from '@/components/Link';
-import Pre from '@/components/Pre';
 import LinkButton from '@/components/LinkButton';
+import Pre from '@/components/Pre';
+import TableOfContentInline from '@/components/TableOfContentInline';
+import { coreContent } from '@/lib/utils/contentlayer';
 
 interface MDXLayout {
   content: Blog | Author;

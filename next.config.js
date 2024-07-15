@@ -52,9 +52,16 @@ const securityHeaders = [
     key: 'Permissions-Policy',
     value: 'camera=(), microphone=(), geolocation=()',
   },
+  // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
+  {
+    key: 'Cache-Control',
+    value: 'max-age=60',
+  },
 ];
 
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next/dist/next-server/server/config').NextConfig}
+ **/
 module.exports = () => {
   const plugins = [withContentlayer, withBundleAnalyzer];
   return plugins.reduce((acc, next) => next(acc), {
@@ -64,7 +71,7 @@ module.exports = () => {
       dirs: ['app', 'components', 'layouts', 'scripts'],
     },
     images: {
-      domains: ['', 'localhost', 'tailwind-nextjs-starter-blog-i18n.vercel.app/', 'picsum.photos'],
+      domains: ['', 'localhost', 'picsum.photos'],
     },
     async headers() {
       return [
@@ -73,6 +80,15 @@ module.exports = () => {
           headers: securityHeaders,
         },
       ];
+    },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    webpack: (config, _options) => {
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      });
+
+      return config;
     },
   });
 };

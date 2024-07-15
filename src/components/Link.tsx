@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { AnchorHTMLAttributes, DetailedHTMLProps } from 'react';
+import type { AnchorHTMLAttributes, DetailedHTMLProps } from 'react';
+
 import LinkButton from './LinkButton';
 
 const CustomLink = ({

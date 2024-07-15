@@ -2,6 +2,7 @@
 
 import { useLenis } from '@studio-freight/react-lenis';
 import React from 'react';
+
 import { opacityForBlock } from './opacity';
 
 const Intro = () => {
@@ -38,28 +39,24 @@ const Intro = () => {
       <div className="mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-10 py-24 text-4xl font-semibold tracking-tight md:py-28 md:text-6xl lg:px-20 lg:py-3 lg:text-7xl">
         <div className="leading-[1.15]">
           <div
-            className="transition-opacity duration-300"
+            className="transition-opacity duration-300 mb-6"
             style={{ opacity: opacityForBlock(progress, 0) }}
           >
-            I have a keen interest in exploring new technologies.
+            I am a dedicated and performance-driven Software Engineer.
           </div>
           <span
-            className="transition-opacity duration-300 inline-block after:content-['_']"
+            className="transition-opacity duration-300 inline-block after:content-['_'] mb-6"
             style={{ opacity: opacityForBlock(progress, 1) }}
           >
-            I have a keen interest in exploring new technologies.
-          </span>
-          <span
-            className="transition-opacity duration-300 inline-block after:content-['_']"
-            style={{ opacity: opacityForBlock(progress, 2) }}
-          >
-            I have a keen interest in exploring new technologies.
+            My expertise lies in building scalable and efficient backend systems that power seamless
+            user experiences.
           </span>
           <span
             className="transition-opacity duration-300 inline-block"
-            style={{ opacity: opacityForBlock(progress, 3) }}
+            style={{ opacity: opacityForBlock(progress, 2) }}
           >
-            I have a keen interest in exploring new technologies.
+            Currently, I am expanding my expertise in tools and platforms such as Nginx, Kubernetes,
+            K9s, Terraform, and Ansible to enhance infrastructure automation and orchestration.
           </span>
         </div>
       </div>

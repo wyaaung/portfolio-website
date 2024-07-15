@@ -1,7 +1,7 @@
-import {
-  TableOfContentItem,
-  TableOfContentInlineProps,
+import type {
   NestedTableOfContentItem,
+  TableOfContentInlineProps,
+  TableOfContentItem,
 } from '@/types/TableOfContent';
 
 const createNestedList = (items: TableOfContentItem[]): NestedTableOfContentItem[] => {

@@ -7,9 +7,9 @@ import { usePathname } from 'next/navigation';
 import type React from 'react';
 
 import BlogCard from '@/components/Blog/BlogCard';
-import TagList from '@/components/Blog/Tag/TagList';
 import Pagination from '@/components/Pagination';
-import type { CoreContent} from '@/lib/utils/contentlayer';
+import TagList from '@/components/Tag/TagList';
+import type { CoreContent } from '@/lib/utils/contentlayer';
 import { getAllTags } from '@/lib/utils/contentlayer';
 
 interface Props {
@@ -17,16 +17,9 @@ interface Props {
   title: string;
   initialDisplayBlogs?: CoreContent<Blog>[];
   pagination?: React.ComponentProps<typeof Pagination>;
-  // showSearchBar?: boolean;
 }
 
-const BlogListLayout = ({
-  blogs,
-  title,
-  initialDisplayBlogs = [],
-  pagination,
-}: // showSearchBar = true,
-Props) => {
+const BlogListLayout = ({ blogs, title, initialDisplayBlogs = [], pagination }: Props) => {
   const pathname = usePathname();
 
   const tagCounts = getAllTags(allBlogs);
@@ -46,9 +39,7 @@ Props) => {
         <div className="hidden h-full max-h-screen min-w-[250px] max-w-[250px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
           <div className="px-6 py-4">
             {pathname.startsWith('/blogs') ? (
-              <h3 className="font-bold uppercase text-cyan-500 text-xl">
-                All Blogs
-              </h3>
+              <h3 className="font-bold uppercase text-cyan-500 text-xl">All Blogs</h3>
             ) : (
               <Link
                 href="/blogs"

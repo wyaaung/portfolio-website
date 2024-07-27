@@ -1,5 +1,4 @@
-import type {
-  Action} from 'kbar';
+import type { Action } from 'kbar';
 import {
   KBarAnimator,
   KBarPortal,
@@ -11,7 +10,6 @@ import {
 } from 'kbar';
 
 const KBarModal = ({ actions, isLoading }: { actions: Action[]; isLoading: boolean }) => {
-
   useRegisterActions(actions, [actions]);
 
   const RenderResults = () => {

@@ -15,14 +15,15 @@ Here is a list of some frequently used Kubernetes commands.
 ```sh
 kubectl get pods
 ```
-This command lists all pods in the current namespace.
 
+This command lists all pods in the current namespace.
 
 # Describing a Pod
 
 ```sh
 kubectl describe pods <pod-name>
 ```
+
 This command provides detailed debug information about a specific pod.
 
 # Listing Nodes
@@ -30,6 +31,7 @@ This command provides detailed debug information about a specific pod.
 ```sh
 kubectl get node
 ```
+
 This command lists all the nodes (VMs) in the cluster.
 
 # Listing CronJobs
@@ -37,6 +39,7 @@ This command lists all the nodes (VMs) in the cluster.
 ```sh
 kubectl get cronjob
 ```
+
 This command shows a summary table of all running cronjobs.
 
 # Viewing CronJob Details
@@ -44,6 +47,7 @@ This command shows a summary table of all running cronjobs.
 ```sh
 kubectl get cronjob <cronjob-name> -o yaml
 ```
+
 This command provides a detailed YAML file that includes environment variables, schedules, resource allocations, and more.
 
 # Listing ConfigMaps
@@ -51,6 +55,7 @@ This command provides a detailed YAML file that includes environment variables, 
 ```sh
 kubectl get configmaps
 ```
+
 ConfigMaps hold configuration data for pods to consume.
 
 # Viewing a ConfigMap
@@ -58,6 +63,7 @@ ConfigMaps hold configuration data for pods to consume.
 ```sh
 kubectl get configmaps <configmap-name> -o yaml
 ```
+
 This command shows the YAML configuration of a specific ConfigMap.
 
 # Listing Secrets
@@ -65,6 +71,7 @@ This command shows the YAML configuration of a specific ConfigMap.
 ```sh
 kubectl get secrets
 ```
+
 Secrets store sensitive information such as passwords, tokens, and keys.
 
 # Listing Services
@@ -72,6 +79,7 @@ Secrets store sensitive information such as passwords, tokens, and keys.
 ```sh
 kubectl get svc
 ```
+
 This command lists all services, which manage network access to the pods.
 
 # Listing Deployments
@@ -79,6 +87,7 @@ This command lists all services, which manage network access to the pods.
 ```sh
 kubectl get deployments
 ```
+
 Deployments manage the desired state of the application pods.
 
 # Viewing Deployments
@@ -86,6 +95,7 @@ Deployments manage the desired state of the application pods.
 ```sh
 kubectl get deployments <app-name> -o yaml
 ```
+
 This command provides a detailed YAML file for a specific deployment.
 
 # Listing Horizontal Pod Autoscalers (HPA)
@@ -93,6 +103,7 @@ This command provides a detailed YAML file for a specific deployment.
 ```sh
 kubectl get hpa
 ```
+
 HPA automatically adjusts the number of pod replicas based on CPU usage.
 
 # Viewing HPA Details
@@ -100,6 +111,7 @@ HPA automatically adjusts the number of pod replicas based on CPU usage.
 ```sh
 kubectl get hpa <hpa-name> -o yaml
 ```
+
 This command shows the YAML configuration of a specific HPA.
 
 # Viewing Pod Logs
@@ -107,5 +119,5 @@ This command shows the YAML configuration of a specific HPA.
 ```sh
 kubectl logs <pod-name> -f
 ```
-This command streams the logs of a specified pod.
 
+This command streams the logs of a specified pod.

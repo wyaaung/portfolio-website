@@ -2,6 +2,7 @@ import type { Blog } from 'contentlayer/generated';
 import type React from 'react';
 
 import PageTitle from '@/components/Blog/PageTitle';
+import PostNavigation from '@/components/Blog/PostNavigation';
 import type { CoreContent } from '@/lib/utils/contentlayer';
 import formatDate from '@/lib/utils/formatDate';
 
@@ -33,7 +34,10 @@ const BlogLayout = ({ content, children, next, prev }: Props) => {
         style={{ gridTemplateRows: 'auto 1fr' }}
       >
         <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-4 xl:row-span-2 xl:pb-0">
-          <div className="prose max-w-none pt-8 pb-8 dark:prose-dark">{children}</div>
+          <div className="prose max-w-none pt-8 pb-8 dark:prose-dark">
+            {children}
+            <PostNavigation prev={prev} next={next} />
+          </div>
         </div>
       </div>
     </article>

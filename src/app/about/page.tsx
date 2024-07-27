@@ -1,4 +1,5 @@
 import { allAuthors } from 'contentlayer/generated';
+import { notFound } from 'next/navigation';
 import React from 'react';
 
 import MDXLayoutRenderer from '@/components/MDXComponents';
@@ -14,7 +15,7 @@ const About = () => {
   const author = allAuthors.find((p) => p.slug === 'about');
 
   if (!author) {
-    return null;
+    return notFound();
   }
 
   return (

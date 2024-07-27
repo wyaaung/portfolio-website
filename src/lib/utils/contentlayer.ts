@@ -83,3 +83,11 @@ export function getAllTags(allBlogs: Blog[]): Record<string, number> {
     return tagCount;
   }, {});
 }
+
+export type BlogLink = { slug: string; title: string };
+
+export function formatBlogLink(
+  blog: Omit<Blog, 'body' | '_raw' | '_id'> | null
+): BlogLink | undefined {
+  return blog ? { title: blog.title, slug: blog.slug } : undefined;
+}

@@ -11,14 +11,13 @@ import { KBarSearchProvider } from '@/lib/search/kbar';
 import LenisProvider from '@/providers/LenisProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
 
-
 export const metadata: Metadata = {
   title: siteMetaData.title,
   description: siteMetaData.description,
   metadataBase: new URL('https://wyaaung.vercel.app'),
 };
 
-export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const basePath = process.env.BASE_PATH || '';
   return (
     <html lang={siteMetaData.language} suppressHydrationWarning>

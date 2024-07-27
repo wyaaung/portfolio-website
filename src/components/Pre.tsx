@@ -1,6 +1,6 @@
 'use client';
 
-import type { DetailedHTMLProps, HTMLAttributes} from 'react';
+import type { DetailedHTMLProps, HTMLAttributes } from 'react';
 import { useRef, useState } from 'react';
 
 const Pre = ({ children }: DetailedHTMLProps<HTMLAttributes<HTMLPreElement>, HTMLPreElement>) => {

@@ -14,7 +14,7 @@ export default function Home() {
       <Hero />
       <Intro />
       <Container>
-        <RecentBlogs blogs={blogs}/>
+        <RecentBlogs blogs={blogs} />
       </Container>
     </ScrollProvider>
   );

@@ -1,0 +1,111 @@
+---
+title: 'Frequently used Kubernetes Commands'
+date: '2024-03-18'
+tags: ['Kubernetes', 'DevOps']
+draft: false
+summary: 'Frequently used Kubernetes commands for managing clusters, deploying applications, and troubleshooting.'
+---
+
+<TableOfContentInline tableOfContentItems={props.toc} />
+
+Here is a list of some frequently used Kubernetes commands.
+
+# Listing Pods
+
+```sh
+kubectl get pods
+```
+This command lists all pods in the current namespace.
+
+
+# Describing a Pod
+
+```sh
+kubectl describe pods <pod-name>
+```
+This command provides detailed debug information about a specific pod.
+
+# Listing Nodes
+
+```sh
+kubectl get node
+```
+This command lists all the nodes (VMs) in the cluster.
+
+# Listing CronJobs
+
+```sh
+kubectl get cronjob
+```
+This command shows a summary table of all running cronjobs.
+
+# Viewing CronJob Details
+
+```sh
+kubectl get cronjob <cronjob-name> -o yaml
+```
+This command provides a detailed YAML file that includes environment variables, schedules, resource allocations, and more.
+
+# Listing ConfigMaps
+
+```sh
+kubectl get configmaps
+```
+ConfigMaps hold configuration data for pods to consume.
+
+# Viewing a ConfigMap
+
+```sh
+kubectl get configmaps <configmap-name> -o yaml
+```
+This command shows the YAML configuration of a specific ConfigMap.
+
+# Listing Secrets
+
+```sh
+kubectl get secrets
+```
+Secrets store sensitive information such as passwords, tokens, and keys.
+
+# Listing Services
+
+```sh
+kubectl get svc
+```
+This command lists all services, which manage network access to the pods.
+
+# Listing Deployments
+
+```sh
+kubectl get deployments
+```
+Deployments manage the desired state of the application pods.
+
+# Viewing Deployments
+
+```sh
+kubectl get deployments <app-name> -o yaml
+```
+This command provides a detailed YAML file for a specific deployment.
+
+# Listing Horizontal Pod Autoscalers (HPA)
+
+```sh
+kubectl get hpa
+```
+HPA automatically adjusts the number of pod replicas based on CPU usage.
+
+# Viewing HPA Details
+
+```sh
+kubectl get hpa <hpa-name> -o yaml
+```
+This command shows the YAML configuration of a specific HPA.
+
+# Viewing Pod Logs
+
+```sh
+kubectl logs <pod-name> -f
+```
+This command streams the logs of a specified pod.
+

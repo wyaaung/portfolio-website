@@ -1,0 +1,85 @@
+---
+title: 'Basic Kubernetes Essentials: What You Need to Know'
+date: '2024-03-17'
+tags: ['Kubernetes', 'DevOps', 'Containerization']
+draft: false
+summary: 'This covers essential Kubernetes concepts.'
+---
+
+<TableOfContentInline tableOfContentItems={props.toc} />
+
+Kubernetes is an orchestration tool that acts like a conductor of an orchestra. You provide it with a configuration (like a sheet of music), and it ensures your applications run in harmony according to the specifications. This article will cover the fundamental concepts and commands I use daily to navigate and manage Kubernetes clusters.
+
+# Key Kubernetes Concepts
+
+## Pods
+A Pod is a running instance of an application. Each Pod shows the status of the application run, with the most common statuses being:
+
+- **Completed**: The application ran and completed successfully.
+- **Running**: The application is currently running.
+- **Error**: The application encountered an error and exited with a non-zero code.
+- **OOMKilled**: The application was killed because it exceeded the memory limit.
+- **Evicted**: The application was killed because it exceeded the memory available in the cluster at that time.
+
+## Nodes
+
+Nodes are virtual machines (VMs) that run applications. Multiple applications can run on the same node. If a node fails, Kubernetes will try to move the applications to a healthy node, providing a self-healing capability.
+
+## Master Nodes
+
+These nodes orchestrate the worker nodes but do not run applications themselves.
+
+## Resource Allocation
+
+In Kubernetes, resource limits for CPU and RAM are always defined for applications. Kubernetes will throttle CPU usage if the limit is exceeded and will fail the application if it exceeds the RAM limit. Kubernetes tries to restart batch process applications several times before stopping attempts. For example, if a Pod is deleted, Kubernetes immediately spins up a new Pod.
+
+## Idempotency
+
+Idempotency means that making multiple identical requests should have the same effect as making a single request. This property is crucial for applications running in Kubernetes because they may be restarted or killed, and they need to produce consistent results regardless of restarts.
+
+## Helm
+
+Helm is a package manager for Kubernetes. Instead of writing large .yaml files, Helm allows us to create templates and fill in the gaps, simplifying the deployment process. For instance, the values.yaml files in the config folder are part of a larger config file passed to Kubernetes.
+
+# Application Types
+
+## Real-Time Applications
+
+These run constantly and may have multiple Pods to handle traffic. A service sits over multiple Pods and acts as a load balancer.
+
+## Batch Processing Applications
+
+These run, stop, and then run again as needed. Typically, only one Pod is used to process the data once.
+
+# Services
+
+Services route traffic to the appropriate Pods. Key types include:
+
+- **Cluster IP**: Exposes the service on an internal IP, making it reachable only within the cluster.
+- **Node Port**: Allows the service to accept traffic from outside the cluster.
+
+In production, having multiple Pods per application ensures that if one Pod fails, traffic can be redirected to a healthy Pod, maintaining application availability.
+
+# Probes
+
+## Liveness Probe
+
+An application exposes an endpoint, such as `/health/live`, that Kubernetes calls at regular intervals (e.g., every 30 seconds). If the endpoint returns a non-zero status, the application is killed and restarted. This probe is used in both real-time and batch applications.
+
+## Readiness Probe
+
+This probe detects if an application is temporarily unable to serve traffic, such as during a database connection failure. The probe prevents traffic from being sent to the Pod until the issue is resolved. Readiness probes are used only in real-time applications.
+
+## Replicas
+
+The **replicas** field defines how many copies of an application should run. For example, setting **replicas** to 2 means there will be two Pods running the application.
+
+# Horizontal Pod Autoscaler (HPA)
+
+The HPA adjusts the number of Pods based on CPU usage. With the `kubectl get hpa <hpa name> -o yaml` command, you can find:
+
+- **minReplicas**: The minimum number of Pods that will run at any time.
+- **maxReplicas**: The maximum number of Pods that can run during high CPU usage.
+- **targetCPUUtilizationPercentage**: The CPU threshold percentage at which an additional Pod will be created, as long as it doesn’t exceed the **maxReplicas** value.
+
+Understanding these basic Kubernetes concepts is essential.

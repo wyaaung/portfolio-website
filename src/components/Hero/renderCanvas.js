@@ -9,9 +9,8 @@ n.prototype = {
     this.amplitude = e.amplitude || 1;
   },
   update: function () {
-    return (
-      (this.phase += this.frequency), (e = this.offset + Math.sin(this.phase) * this.amplitude)
-    );
+    this.phase += this.frequency;
+    return (e = this.offset + Math.sin(this.phase) * this.amplitude);
   },
   value: function () {
     return e;
@@ -39,19 +38,21 @@ Line.prototype = {
       t = this.nodes[0];
     t.vx += (pos.x - t.x) * e;
     t.vy += (pos.y - t.y) * e;
-    for (var n, i = 0, a = this.nodes.length; i < a; i++)
-      (t = this.nodes[i]),
-      0 < i &&
-          ((n = this.nodes[i - 1]),
-          (t.vx += (n.x - t.x) * e),
-          (t.vy += (n.y - t.y) * e),
-          (t.vx += n.vx * E.dampening),
-          (t.vy += n.vy * E.dampening)),
-      (t.vx *= this.friction),
-      (t.vy *= this.friction),
-      (t.x += t.vx),
-      (t.y += t.vy),
-      (e *= E.tension);
+    for (var n, i = 0, a = this.nodes.length; i < a; i++) {
+      t = this.nodes[i];
+      if (i > 0) {
+        n = this.nodes[i - 1];
+        t.vx += (n.x - t.x) * e;
+        t.vy += (n.y - t.y) * e;
+        t.vx += n.vx * E.dampening;
+        t.vy += n.vy * E.dampening;
+      }
+      t.vx *= this.friction;
+      t.vy *= this.friction;
+      t.x += t.vx;
+      t.y += t.vy;
+      e *= E.tension;
+    }
   },
   draw: function () {
     var e,
@@ -82,21 +83,29 @@ function onMousemove(e) {
       lines.push(new Line({ spring: 0.45 + (e / E.trails) * 0.025 }));
   }
   function c(e) {
-    e.touches
-      ? ((pos.x = e.touches[0].pageX), (pos.y = e.touches[0].pageY))
-      : ((pos.x = e.clientX), (pos.y = e.clientY)),
+    if (e.touches) {
+      pos.x = e.touches[0].pageX;
+      pos.y = e.touches[0].pageY;
+    } else {
+      pos.x = e.clientX;
+      pos.y = e.clientY;
+    }
     e.preventDefault();
   }
   function l(e) {
-    1 == e.touches.length && ((pos.x = e.touches[0].pageX), (pos.y = e.touches[0].pageY));
+    if (e.touches.length == 1) {
+      pos.x = e.touches[0].pageX;
+      pos.y = e.touches[0].pageY;
+    }
   }
-  document.removeEventListener('mousemove', onMousemove),
-  document.removeEventListener('touchstart', onMousemove),
-  document.addEventListener('mousemove', c),
-  document.addEventListener('touchmove', c),
-  document.addEventListener('touchstart', l),
-  c(e),
-  o(),
+
+  document.removeEventListener('mousemove', onMousemove);
+  document.removeEventListener('touchstart', onMousemove);
+  document.addEventListener('mousemove', c, { passive: false });
+  document.addEventListener('touchmove', c, { passive: false });
+  document.addEventListener('touchstart', l, { passive: false });
+  c(e);
+  o();
   render();
 }
 
@@ -134,6 +143,7 @@ var ctx,
     dampening: 0.25,
     tension: 0.98,
   };
+
 function Node() {
   this.x = 0;
   this.y = 0;
@@ -151,8 +161,8 @@ export const renderCanvas = function () {
     frequency: 0.0015,
     offset: 285,
   });
-  document.addEventListener('mousemove', onMousemove);
-  document.addEventListener('touchstart', onMousemove);
+  document.addEventListener('mousemove', onMousemove, { passive: false });
+  document.addEventListener('touchstart', onMousemove, { passive: false });
   document.body.addEventListener('orientationchange', resizeCanvas);
   window.addEventListener('resize', resizeCanvas);
   window.addEventListener('focus', () => {

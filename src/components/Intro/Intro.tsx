@@ -39,13 +39,13 @@ const Intro = () => {
       <div className="mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-10 py-24 text-4xl font-semibold tracking-tight md:py-28 md:text-6xl lg:px-20 lg:py-3 lg:text-7xl">
         <div className="leading-[1.15]">
           <div
-            className="transition-opacity duration-300 mb-6"
+            className="transition-opacity duration-300 mb-10"
             style={{ opacity: opacityForBlock(progress, 0) }}
           >
             I am a dedicated and performance-driven Software Engineer.
           </div>
           <span
-            className="transition-opacity duration-300 inline-block after:content-['_'] mb-6"
+            className="transition-opacity duration-300 inline-block after:content-['_'] mb-10"
             style={{ opacity: opacityForBlock(progress, 1) }}
           >
             My expertise lies in building scalable and efficient backend systems that power seamless

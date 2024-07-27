@@ -10,6 +10,8 @@ const config: Config = {
     './src/layouts/**/*.{js,ts,jsx,tsx,mdx}',
     './src/providers/**/*.{js,ts,jsx,tsx,mdx}',
     './src/wrappers/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/lib/search/**/*.{js,ts,jsx,tsx}',
+    './src/content/**/*.mdx',
   ],
   theme: {
     extend: {
@@ -34,7 +36,7 @@ const config: Config = {
       fontFamily: {
         sans: ['Mukta', ...defaultTheme.fontFamily.sans],
       },
-      typography: (theme: any) => ({
+      typography: ({ theme }) => ({
         DEFAULT: {
           css: {
             color: theme('colors.gray.800'),

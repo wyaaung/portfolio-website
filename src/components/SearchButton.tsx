@@ -1,11 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useKBar } from 'kbar';
 import React from 'react';
 import { BsSearch } from 'react-icons/bs';
 
 const SearchButton = () => {
   const [mounted, setMounted] = React.useState(false);
+  const { query } = useKBar();
 
   // When mounted on client, now we can show the UI
   React.useEffect(() => setMounted(true), []);
@@ -15,7 +17,7 @@ const SearchButton = () => {
       type="button"
       className="ml-1 mr-1 h-8 w-8 rounded p-1"
       whileHover={{ scale: 1.2 }}
-      onClick={() => console.log('Search Button')}
+      onClick={() => query.toggle()}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -14,8 +14,8 @@ This repository holds my personal portfolio blogging site built with Next.js, Ta
 - **Language**: [Typescript](https://www.typescriptlang.org/)
 - **Deployment**: [Vercel](https://vercel.com)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Analytics**: [Vercel Web Analytics] (https://vercel.com/docs/analytics)
-- **Content**: [Content Layer] (https://github.com/timlrx/contentlayer2)
+- **Analytics**: [Vercel Web Analytics](https://vercel.com/docs/analytics)
+- **Content**: [Content Layer](https://github.com/timlrx/contentlayer2)
 
 ### Tooling
 

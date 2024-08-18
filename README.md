@@ -2,6 +2,12 @@
   <h1 align="center">Personal Portfolio Website</h1>
 </div>
 
+This repository holds my personal portfolio blogging site built with Next.js, Tailwind, and Contentlayer. This is easily configurable and customisable. 
+
+## Preview
+
+![Preview of portfolio website](.github/images/preview.png)
+
 ## Tech Stack
 
 - **Framework**: [Next.js](https://nextjs.org/)
@@ -13,11 +19,14 @@
 
 ### Tooling
 
-Linting is an active part of development process, the linting is activated `pre-commit` stage and is applied only on the **staged** files. This ensures that every new and changed file is validated against linting rules.
+Linting is an active part of the development process, the linting is activated `pre-commit` stage and is applied only on the **staged** files. This ensures that every new and changed file is validated against linting rules.
 
 - [ESLint](https://eslint.org/)
 - [Kusky](https://typicode.github.io/husky/) - To configure git hooks
-- [lint-staged](https://github.com/lint-staged/lint-staged) - To lint codes before committing code
+- [lint-staged](https://github.com/lint-staged/lint-staged) - To lint only **staged** codes before committing code
+
+
+Linting helps maintain a consistent coding style, catching errors early. `lint-staged` ensures that only the necessary files are linted, improving efficiency and preventing unwanted commits. This helps to maintain high code quality with minimal effort.
 
 ## Getting Started
 
@@ -50,4 +59,3 @@ npm run dev
 ### 4. Open the app in your browser
 
 Visit [http://localhost:3000](http://localhost:3000) in your browser.
-

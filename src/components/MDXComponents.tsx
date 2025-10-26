@@ -1,6 +1,7 @@
 import type { MDXComponents } from 'mdx/types';
 import Image from 'next/image';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import rehypePrismPlus from 'rehype-prism-plus';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
@@ -41,7 +42,7 @@ const MDXLayoutRenderer = ({ content, toc }: MDXLayout) => {
       options={{
         mdxOptions: {
           remarkPlugins: [remarkGfm],
-          rehypePlugins: [rehypeSlug],
+          rehypePlugins: [rehypeSlug, rehypePrismPlus],
         },
       }}
     />

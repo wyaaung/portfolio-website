@@ -1,6 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
@@ -20,22 +21,11 @@ const MobileNavigation = () => {
     <div className="sm:hidden">
       <button
         type="button"
-        className="ml-1 mr-1 h-10 w-10 rounded p-1"
+        className="mr-1 ml-1 h-10 w-10 rounded p-1"
         aria-label="Toggle Menu"
         onClick={() => setNavigationShown((previous) => !previous)}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          className="text-gray-900 dark:text-gray-100"
-        >
-          <path
-            fillRule="evenodd"
-            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-            clipRule="evenodd"
-          />
-        </svg>
+        <Menu className="text-gray-900 dark:text-gray-100" size={24} />
       </button>
       <AnimatePresence>
         <motion.div
@@ -54,18 +44,7 @@ const MobileNavigation = () => {
               className="h-8 w-8 rounded"
               onClick={() => setNavigationShown((previous) => !previous)}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="text-gray-900 dark:text-gray-100"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <X className="text-gray-900 dark:text-gray-100" size={24} />
             </button>
           </header>
           <nav className="fixed mt-8 h-full">
@@ -73,7 +52,7 @@ const MobileNavigation = () => {
               <Link
                 href="/"
                 onClick={() => setNavigationShown((previous) => !previous)}
-                className={`horizontal-underline font-bold tracking-widest text-gray-900 backdrop:text-2xl dark:text-gray-100 ${
+                className={`horizontal-underline font-bold text-gray-900 tracking-widest backdrop:text-2xl dark:text-gray-100 ${
                   pathName === '/' ? 'horizontal-underline-active' : ''
                 }`}
               >
@@ -87,7 +66,7 @@ const MobileNavigation = () => {
                   <Link
                     href={href}
                     onClick={() => setNavigationShown((previous) => !previous)}
-                    className={`horizontal-underline font-bold tracking-widest text-gray-900 backdrop:text-2xl dark:text-gray-100 ${
+                    className={`horizontal-underline font-bold text-gray-900 tracking-widest backdrop:text-2xl dark:text-gray-100 ${
                       active ? 'horizontal-underline-active' : ''
                     }`}
                   >

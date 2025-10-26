@@ -7,7 +7,7 @@ export type TableOfContentItem = {
 export type TableOfContent = TableOfContentItem[];
 
 export interface TableOfContentInlineProps {
-  tableOfContentItems: TableOfContent;
+  tableOfContentItems?: TableOfContent;
   fromHeading?: number;
   toHeading?: number;
   asDisclosure?: boolean;

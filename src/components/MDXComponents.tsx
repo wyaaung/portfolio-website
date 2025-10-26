@@ -1,16 +1,19 @@
-import type { Author, Blog } from 'contentlayer/generated';
 import type { MDXComponents } from 'mdx/types';
 import Image from 'next/image';
-import { useMDXComponent } from 'next-contentlayer2/hooks';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
 
 import CustomLink from '@/components/Link';
 import LinkButton from '@/components/LinkButton';
 import Pre from '@/components/Pre';
 import TableOfContentInline from '@/components/TableOfContentInline';
-import { coreContent } from '@/lib/utils/contentlayer';
+import type { BlogPost, MDXContent } from '@/lib/utils/mdx';
+import type { TableOfContent, TableOfContentInlineProps } from '@/types/TableOfContent';
 
 interface MDXLayout {
-  content: Blog | Author;
+  content: BlogPost | MDXContent;
+  toc?: TableOfContent;
   [key: string]: unknown;
 }
 
@@ -22,11 +25,27 @@ const components: MDXComponents = {
   LinkButton,
 };
 
-const MDXLayoutRenderer = ({ content, ...rest }: MDXLayout) => {
-  const MDXLayout = useMDXComponent(content.body.code);
-  const mainContent = coreContent(content);
+const MDXLayoutRenderer = ({ content, toc }: MDXLayout) => {
+  // Enhanced components with access to TOC data
+  const enhancedComponents: MDXComponents = {
+    ...components,
+    TableOfContentInline: (props: TableOfContentInlineProps) => (
+      <TableOfContentInline tableOfContentItems={content.toc || toc} {...props} />
+    ),
+  };
 
-  return <MDXLayout content={mainContent} components={components} {...rest} />;
+  return (
+    <MDXRemote
+      source={content.content}
+      components={enhancedComponents}
+      options={{
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+          rehypePlugins: [rehypeSlug],
+        },
+      }}
+    />
+  );
 };
 
 export default MDXLayoutRenderer;

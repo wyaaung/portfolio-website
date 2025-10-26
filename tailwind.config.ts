@@ -36,7 +36,7 @@ const config: Config = {
       fontFamily: {
         sans: ['Mukta', ...defaultTheme.fontFamily.sans],
       },
-      typography: ({ theme }) => ({
+      typography: ({ theme }: { theme: (key: string) => string }) => ({
         DEFAULT: {
           css: {
             color: theme('colors.gray.800'),

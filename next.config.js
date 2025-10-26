@@ -1,4 +1,10 @@
-const { withContentlayer } = require('next-contentlayer2');
+const withMDX = require('@next/mdx')({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -61,23 +67,29 @@ const securityHeaders = [
 
 const output = process.env.EXPORT ? 'export' : undefined;
 const basePath = process.env.BASE_PATH || undefined;
-const unoptimized = process.env.UNOPTIMIZED ? true : undefined;
+const _unoptimized = process.env.UNOPTIMIZED ? true : undefined;
 
 /**
  * @type {import('next/dist/next-server/server/config').NextConfig}
  **/
 module.exports = () => {
-  const plugins = [withContentlayer, withBundleAnalyzer];
+  const plugins = [withMDX, withBundleAnalyzer];
   return plugins.reduce((acc, next) => next(acc), {
     output,
     basePath,
     reactStrictMode: true,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-    eslint: {
-      dirs: ['app', 'components', 'layouts', 'scripts'],
-    },
     images: {
-      domains: ['', 'localhost', 'picsum.photos'],
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'picsum.photos',
+        },
+        {
+          protocol: 'http',
+          hostname: 'localhost',
+        },
+      ],
     },
     async headers() {
       return [

@@ -5,15 +5,22 @@ import { KBarProvider } from 'kbar';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-import type { CoreContent, MDXDocument } from '../utils/contentlayer';
 import formatDate from '../utils/formatDate';
 import KBarModal from './kbar-modal';
+
+interface PostData {
+  filePath?: string;
+  path?: string;
+  title: string;
+  summary?: string;
+  date: string;
+  slug: string;
+}
 
 export interface KBarSearchProps {
   searchDocumentsPath: string | false;
   defaultActions?: Action[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onSearchDocumentsLoad?: (json: any) => Action[];
+  onSearchDocumentsLoad?: (json: PostData[]) => Action[];
 }
 
 export const KBarSearchProvider: React.FC<{
@@ -26,16 +33,16 @@ export const KBarSearchProvider: React.FC<{
   const [dataLoaded, setDataLoaded] = React.useState(false);
 
   React.useEffect(() => {
-    const mapPosts = (posts: CoreContent<MDXDocument>[]) => {
+    const mapPosts = (posts: PostData[]) => {
       const actions: Action[] = [];
       for (const post of posts) {
         actions.push({
-          id: post.path,
+          id: post.filePath || post.path || post.slug,
           name: post.title,
-          keywords: post?.summary || '',
+          keywords: post.summary || '',
           section: 'Content',
           subtitle: formatDate(post.date),
-          perform: () => router.push('/' + post.path),
+          perform: () => router.push(`/blogs/${post.slug}`),
         });
       }
       return actions;
@@ -58,7 +65,7 @@ export const KBarSearchProvider: React.FC<{
     } else {
       setDataLoaded(true);
     }
-  }, [defaultActions, dataLoaded, router, searchDocumentsPath, onSearchDocumentsLoad]);
+  }, [dataLoaded, router, searchDocumentsPath, onSearchDocumentsLoad]);
 
   return (
     <KBarProvider actions={defaultActions}>

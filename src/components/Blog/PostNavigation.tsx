@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import type { BlogLink } from '@/lib/utils/contentlayer';
+import type { BlogLink } from '@/lib/utils/mdx';
 
 interface PostNavigationProps {
   prev?: BlogLink;

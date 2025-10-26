@@ -12,9 +12,7 @@ n.prototype = {
     this.phase += this.frequency;
     return (e = this.offset + Math.sin(this.phase) * this.amplitude);
   },
-  value: function () {
-    return e;
-  },
+  value: () => e,
 };
 
 function Line(e) {
@@ -93,7 +91,7 @@ function onMousemove(e) {
     e.preventDefault();
   }
   function l(e) {
-    if (e.touches.length == 1) {
+    if (e.touches.length === 1) {
       pos.x = e.touches[0].pageX;
       pos.y = e.touches[0].pageY;
     }
@@ -114,7 +112,7 @@ function render() {
     ctx.globalCompositeOperation = 'source-over';
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.globalCompositeOperation = 'lighter';
-    ctx.strokeStyle = 'hsla(' + Math.round(f.update()) + ',90%,50%,0.25)';
+    ctx.strokeStyle = `hsla(${Math.round(f.update())},90%,50%,0.25)`;
     ctx.lineWidth = 1;
     for (var e, t = 0; t < E.trails; t++) {
       (e = lines[t]).update();
@@ -151,7 +149,7 @@ function Node() {
   this.vx = 0;
 }
 
-export const renderCanvas = function () {
+export const renderCanvas = () => {
   ctx = document.getElementById('canvas').getContext('2d');
   ctx.running = true;
   ctx.frame = 1;

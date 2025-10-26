@@ -9,7 +9,7 @@ export default function Tag({ text }: Props) {
   return (
     <Link
       href={`/tags/${slug(text)}`}
-      className="mr-3 text-sm font-medium uppercase text-cyan-500 dark:text-cyan-500 hover:text-cyan-600 dark:hover:text-cyan-400"
+      className="mr-3 font-medium text-cyan-500 text-sm uppercase hover:text-cyan-600 dark:text-cyan-500 dark:hover:text-cyan-400"
     >
       {text.split(' ').join('-')}
     </Link>

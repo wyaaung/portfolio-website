@@ -2,7 +2,7 @@
   <h1 align="center">Personal Portfolio Website</h1>
 </div>
 
-This repository holds my personal portfolio blogging site built with Next.js, Tailwind, and Contentlayer. This is easily configurable and customisable. 
+This repository holds my personal portfolio blogging site built with Next.js, Tailwind CSS, and native MDX processing. This is easily configurable and customisable. 
 
 ## Preview
 
@@ -10,31 +10,34 @@ This repository holds my personal portfolio blogging site built with Next.js, Ta
 
 ## Tech Stack
 
-- **Framework**: [Next.js](https://nextjs.org/)
-- **Language**: [Typescript](https://www.typescriptlang.org/)
-- **Deployment**: [Vercel](https://vercel.com)
+- **Framework**: [Next.js 16](https://nextjs.org/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **UI Framework**: [React 19](https://react.dev/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Analytics**: [Vercel Web Analytics](https://vercel.com/docs/analytics)
-- **Content**: [Content Layer](https://github.com/timlrx/contentlayer2)
+- **Content Management**: Native [MDX](https://mdxjs.com/) processing with [@next/mdx](https://nextjs.org/docs/app/building-your-application/configuring/mdx)
+- **Animation**: [Framer Motion](https://www.framer.com/motion/)
+- **Smooth Scrolling**: [Lenis](https://lenis.darkroom.engineering/)
+- **Command Palette**: [kbar](https://kbar.vercel.app/)
+- **Analytics**: [Vercel Web Analytics](https://vercel.com/docs/analytics) & [Speed Insights](https://vercel.com/docs/speed-insights)
+- **Deployment**: [Vercel](https://vercel.com)
 
 ### Tooling
 
-Linting is an active part of the development process, the linting is activated `pre-commit` stage and is applied only on the **staged** files. This ensures that every new and changed file is validated against linting rules.
+Code quality and formatting are maintained through automated tooling that runs on pre-commit hooks, ensuring only staged files are processed for optimal efficiency.
 
-- [ESLint](https://eslint.org/)
-- [Kusky](https://typicode.github.io/husky/) - To configure git hooks
-- [lint-staged](https://github.com/lint-staged/lint-staged) - To lint only **staged** codes before committing code
+- [Biome](https://biomejs.dev/) - Fast linter and formatter for JavaScript/TypeScript
+- [Husky](https://typicode.github.io/husky/) - Git hooks management
+- [lint-staged](https://github.com/lint-staged/lint-staged) - Run linting only on staged files before committing
 
-
-Linting helps maintain a consistent coding style, catching errors early. `lint-staged` ensures that only the necessary files are linted, improving efficiency and preventing unwanted commits. This helps to maintain high code quality with minimal effort.
+Biome provides ultra-fast linting and formatting with zero configuration, replacing ESLint and Prettier. The pre-commit hooks ensure consistent code style and catch errors early, maintaining high code quality with minimal effort.
 
 ## Getting Started
 
 ### Prerequisites
 
-Here's what you need to be able to run Papermark:
+Here's what you need to be able to run this portfolio website:
 
-- [Node](https://nodejs.org/en/download/) version "Iron" (Node.js `20.x.x`).
+- [Node.js](https://nodejs.org/en/download/) version 20.11 or higher
 
 
 ### 1. Clone the repository

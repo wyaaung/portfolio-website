@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { useKBar } from 'kbar';
+import { Search } from 'lucide-react';
 import React from 'react';
-import { BsSearch } from 'react-icons/bs';
 
 const SearchButton = () => {
   const [mounted, setMounted] = React.useState(false);
@@ -15,18 +15,11 @@ const SearchButton = () => {
     <motion.button
       aria-label="Search Button"
       type="button"
-      className="ml-1 mr-1 h-8 w-8 rounded p-1"
+      className="mr-1 ml-1 h-8 w-8 rounded p-1"
       whileHover={{ scale: 1.2 }}
       onClick={() => query.toggle()}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-        className="text-gray-900 dark:text-gray-100"
-      >
-        {mounted && <BsSearch size={16} />}
-      </svg>
+      {mounted && <Search size={24} />}
     </motion.button>
   );
 };

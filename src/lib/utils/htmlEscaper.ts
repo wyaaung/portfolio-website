@@ -22,4 +22,4 @@ const pe = (m: keyof typeof esca) => esca[m];
  *  the input type is unexpected, except for boolean and numbers,
  *  converted as string.
  */
-export const escape = (es: string): string => replace.call(es, ca, pe);
+export const htmlEscape = (es: string): string => replace.call(es, ca, pe);

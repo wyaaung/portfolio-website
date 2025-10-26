@@ -1,9 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import React from 'react';
-import { BsMoonFill, BsSunFill } from 'react-icons/bs';
 
 const ThemeSwitch = () => {
   const [mounted, setMounted] = React.useState(false);
@@ -17,7 +17,7 @@ const ThemeSwitch = () => {
       id="theme-btn"
       aria-label="Toggle Dark Mode"
       type="button"
-      className="ml-1 mr-1 h-8 w-8 rounded p-1"
+      className="mr-1 ml-1 h-8 w-8 rounded p-1"
       whileTap={{
         scale: 0.7,
         rotate: 360,
@@ -26,18 +26,11 @@ const ThemeSwitch = () => {
       whileHover={{ scale: 1.2 }}
       onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        className="text-gray-900 dark:text-gray-100"
-      >
-        {mounted && (theme === 'dark' || resolvedTheme === 'dark') ? (
-          <BsSunFill size={16} />
-        ) : (
-          <BsMoonFill size={18} />
-        )}
-      </svg>
+      {mounted && (theme === 'dark' || resolvedTheme === 'dark') ? (
+        <Sun size={24} />
+      ) : (
+        <Moon size={24} />
+      )}
     </motion.button>
   );
 };

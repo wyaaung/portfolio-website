@@ -2,4 +2,4 @@
 
 echo '👷 Running linting checks...'
 
-cd src/ && npx eslint . --ext .js,.jsx,.ts,.tsx --quiet && cd - &>/dev/null || exit && echo '✓'
+npx @biomejs/biome check src/ && echo '✓'

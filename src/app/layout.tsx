@@ -11,10 +11,50 @@ import { KBarSearchProvider } from '@/lib/search/kbar';
 import LenisProvider from '@/providers/LenisProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
 
+const baseUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : process.env.NEXT_PUBLIC_BASE_URL || 'https://wyaaung.vercel.app';
+
 export const metadata: Metadata = {
-  title: siteMetaData.title,
+  title: {
+    default: siteMetaData.title,
+    template: `%s - ${siteMetaData.title}`,
+  },
   description: siteMetaData.description,
-  metadataBase: new URL('https://wyaaung.vercel.app'),
+  keywords: [
+    siteMetaData.author,
+    'software engineer',
+    'portfolio',
+    'blog',
+    'THG',
+    'web development',
+    'programming',
+  ].join(', '),
+  authors: [{ name: siteMetaData.author, url: baseUrl }],
+  creator: siteMetaData.author,
+  publisher: siteMetaData.author,
+  metadataBase: new URL(baseUrl),
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    // Add Google Search Console verification if you have one
+    // google: 'your-google-verification-code',
+  },
+  alternates: {
+    canonical: baseUrl,
+    types: {
+      'application/rss+xml': `${baseUrl}/feed.xml`,
+    },
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

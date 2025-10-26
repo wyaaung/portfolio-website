@@ -1,5 +1,5 @@
 module.exports = {
-  '*.{ts,tsx}': (filenames) => [
-    `npx eslint --fix ${filenames.map((filename) => `"${filename}"`).join(' ')}`,
+  '*.{js,jsx,ts,tsx,json}': (filenames) => [
+    `npx @biomejs/biome check --write ${filenames.map((filename) => `"${filename}"`).join(' ')}`,
   ],
 };

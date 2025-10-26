@@ -31,16 +31,21 @@ const createNestedList = (items: TableOfContentItem[]): NestedTableOfContentItem
 };
 
 const TableOfContentInline = ({
-  tableOfContentItems,
+  tableOfContentItems = [],
   fromHeading = 1,
   toHeading = 6,
   asDisclosure = false,
   exclude = '',
   collapse = false,
 }: TableOfContentInlineProps) => {
+  // Early return if no TOC items
+  if (!tableOfContentItems || tableOfContentItems.length === 0) {
+    return null;
+  }
+
   const re = Array.isArray(exclude)
-    ? new RegExp('^(' + exclude.join('|') + ')$', 'i')
-    : new RegExp('^(' + exclude + ')$', 'i');
+    ? new RegExp(`^(${exclude.join('|')})$`, 'i')
+    : new RegExp(`^(${exclude})$`, 'i');
 
   const filteredTableOfContent = tableOfContentItems.filter(
     (tableOfContentItem) =>
@@ -56,11 +61,11 @@ const TableOfContentInline = ({
 
     return (
       <ul className="mb-6">
-        {nestedTableofContentItems.map((nestedTableofContentItem, index) => (
-          <li key={index}>
+        {nestedTableofContentItems.map((nestedTableofContentItem) => (
+          <li key={nestedTableofContentItem.url}>
             <a
               href={nestedTableofContentItem.url}
-              className="not-prose border-b border-cyan-400 no-underline dark:border-cyan-500"
+              className="not-prose border-cyan-400 border-b no-underline dark:border-cyan-500"
             >
               {nestedTableofContentItem.value}
             </a>
@@ -77,7 +82,7 @@ const TableOfContentInline = ({
     <>
       {asDisclosure ? (
         <details open={!collapse}>
-          <summary className="ml-6 pb-2 pt-2 text-xl font-bold">Table of Contents</summary>
+          <summary className="ml-6 pt-2 pb-2 font-bold text-xl">Table of Contents</summary>
           <div className="ml-6">{createList(nestedTableOfContentItems)}</div>
         </details>
       ) : (

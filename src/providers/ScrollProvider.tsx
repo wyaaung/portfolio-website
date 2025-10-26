@@ -1,7 +1,7 @@
 'use client';
 
-import { useLenis } from '@studio-freight/react-lenis';
-import React from 'react';
+import Lenis from 'lenis';
+import React, { useEffect } from 'react';
 
 interface ScrollValue {
   scrollY: number;
@@ -16,10 +16,24 @@ export const ScrollContext = React.createContext<ScrollValue>({ scrollY: 0 });
 export const ScrollProvider = ({ children }: ScrollProviderProps) => {
   const [scrollY, setScrollY] = React.useState(0);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  useLenis(({ scroll }: any) => {
-    setScrollY(scroll);
-  });
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    lenis.on('scroll', ({ scroll }: { scroll: number }) => {
+      setScrollY(scroll);
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   return <ScrollContext.Provider value={{ scrollY }}>{children}</ScrollContext.Provider>;
 };

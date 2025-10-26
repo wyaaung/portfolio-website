@@ -19,7 +19,7 @@ export const Header = () => {
           <div>
             <Link
               href="/"
-              className={`horizontal-underline hidden text-3xl font-extrabold sm:block ${
+              className={`horizontal-underline hidden font-extrabold text-3xl sm:block ${
                 pathName === '/' ? 'horizontal-underline-active' : ''
               }`}
               aria-label="W."
@@ -41,7 +41,7 @@ export const Header = () => {
                       active ? 'horizontal-underline-active' : ''
                     }`}
                   >
-                    <span className="font-semibold tracking-wide text-gray-900 dark:text-gray-100">
+                    <span className="font-semibold text-gray-900 tracking-wide dark:text-gray-100">
                       {title}
                     </span>
                   </Link>

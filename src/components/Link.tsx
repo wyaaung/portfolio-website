@@ -9,13 +9,13 @@ const CustomLink = ({
   href,
   ...rest
 }: DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => {
-  const isInternalLink = href && href.startsWith('/');
-  const isAnchorLink = href && href.startsWith('#');
+  const isInternalLink = href?.startsWith('/');
+  const isAnchorLink = href?.startsWith('#');
 
-  if (isInternalLink) {
+  if (isInternalLink && href) {
     return (
-      <Link href={href} legacyBehavior>
-        <LinkButton {...rest} />
+      <Link href={href} {...rest}>
+        {rest.children}
       </Link>
     );
   }

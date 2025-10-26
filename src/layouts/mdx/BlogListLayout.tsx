@@ -1,7 +1,5 @@
 'use client';
 
-import type { Blog } from 'contentlayer/generated';
-import { allBlogs } from 'contentlayer/generated';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type React from 'react';
@@ -9,20 +7,25 @@ import type React from 'react';
 import BlogCard from '@/components/Blog/BlogCard';
 import Pagination from '@/components/Pagination';
 import TagList from '@/components/Tag/TagList';
-import type { CoreContent } from '@/lib/utils/contentlayer';
-import { getAllTags } from '@/lib/utils/contentlayer';
+import type { BlogPost, CoreContent } from '@/lib/utils/mdx';
 
 interface Props {
-  blogs: CoreContent<Blog>[];
+  blogs: CoreContent<BlogPost>[];
   title: string;
-  initialDisplayBlogs?: CoreContent<Blog>[];
+  initialDisplayBlogs?: CoreContent<BlogPost>[];
   pagination?: React.ComponentProps<typeof Pagination>;
+  tagCounts?: Record<string, number>;
 }
 
-const BlogListLayout = ({ blogs, title, initialDisplayBlogs = [], pagination }: Props) => {
+const BlogListLayout = ({
+  blogs,
+  title,
+  initialDisplayBlogs = [],
+  pagination,
+  tagCounts = {},
+}: Props) => {
   const pathname = usePathname();
 
-  const tagCounts = getAllTags(allBlogs);
   const tagKeys = Object.keys(tagCounts);
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a]);
 
@@ -31,19 +34,19 @@ const BlogListLayout = ({ blogs, title, initialDisplayBlogs = [], pagination }: 
   return (
     <>
       <div className="space-y-2 rounded-lg pt-8 pb-3 md:space-y-5">
-        <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
+        <h1 className="font-extrabold text-3xl text-gray-900 leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 dark:text-gray-100">
           {title}
         </h1>
       </div>
       <div className="flex sm:space-x-24">
-        <div className="hidden h-full max-h-screen min-w-[250px] max-w-[250px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
+        <div className="hidden h-full max-h-screen min-w-[250px] max-w-[250px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md sm:flex dark:bg-gray-900/70 dark:shadow-gray-800/40">
           <div className="px-6 py-4">
             {pathname.startsWith('/blogs') ? (
-              <h3 className="font-bold uppercase text-cyan-500 text-xl">All Blogs</h3>
+              <h3 className="font-bold text-cyan-500 text-xl uppercase">All Blogs</h3>
             ) : (
               <Link
                 href="/blogs"
-                className="font-bold uppercase text-gray-700 hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400"
+                className="font-bold text-gray-700 uppercase hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400"
               >
                 All Blogs
               </Link>
@@ -53,13 +56,13 @@ const BlogListLayout = ({ blogs, title, initialDisplayBlogs = [], pagination }: 
         </div>
         <div>
           <ul>
-            {displayBlogs.map(({ slug, title, tags, summary }, index) => (
+            {displayBlogs.map(({ slug, frontmatter }, index) => (
               <BlogCard
                 key={slug}
-                title={title}
+                title={frontmatter.title}
                 slug={slug}
-                summary={summary}
-                tags={tags}
+                summary={frontmatter.summary}
+                tags={frontmatter.tags}
                 index={index}
               />
             ))}

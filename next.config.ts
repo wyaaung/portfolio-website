@@ -2,6 +2,12 @@ import path from 'node:path';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import withMDX from '@next/mdx';
 import type { NextConfig } from 'next';
+import { createSearchIndex } from './src/lib/utils/mdx';
+
+// Generate search index immediately
+createSearchIndex()
+	.then(() => console.log('Search index generated successfully!'))
+	.catch((error) => console.error('Error generating search index:', error));
 
 const mdxConfig = withMDX({
 	extension: /\.mdx?$/,

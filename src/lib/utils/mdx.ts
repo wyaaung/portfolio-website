@@ -2,8 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
-import { extractTocHeadings } from '@/lib/remark-toc-headings';
 import type { TableOfContent } from '@/types/TableOfContent';
+import { extractTocHeadings } from '../remark-toc-headings';
 
 // Simple slug function that matches rehype-slug behavior
 function createSlug(text: string): string {

@@ -27,9 +27,7 @@ export async function generateMetadata({
 
   const tagName = Object.keys(tagCounts).find((key) => createSlug(key) === tag) || tag;
   const postCount = blogs.length;
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : process.env.NEXT_PUBLIC_BASE_URL || 'https://wyaaung.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://wyaaung.vercel.app';
   const url = `${baseUrl}/tags/${tag}`;
 
   return {

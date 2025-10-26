@@ -7,20 +7,31 @@ import MainLayout from '@/layouts/MainLayout';
 import AuthorLayout from '@/layouts/mdx/AuthorLayout';
 import { getAuthor } from '@/lib/utils/mdx';
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : process.env.NEXT_PUBLIC_BASE_URL || 'https://wyaaung.vercel.app';
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://wyaaung.vercel.app';
 
 export const metadata: Metadata = {
   title: `About - ${siteMetaData.author}`,
   description: `Learn more about ${siteMetaData.author}, ${siteMetaData.description}. Get to know my background, skills, and experience in software engineering.`,
   keywords: [
     siteMetaData.author,
-    'software engineer',
-    'about',
-    'portfolio',
-    'THG',
-    'developer',
+    'Software Engineer',
+    'Portfolio',
+    'Blog',
+    'Tech Blog',
+    'Web Development',
+    'Programming',
+    'JavaScript',
+    'TypeScript',
+    'React',
+    'Next.js',
+    'Node.js',
+    'CSS',
+    'Tailwind CSS',
+    'Java',
+    'Spring',
+    'Docker',
+    'Kubernetes',
+    'AWS',
   ].join(', '),
   authors: [{ name: siteMetaData.author }],
   creator: siteMetaData.author,

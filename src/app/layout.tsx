@@ -11,9 +11,7 @@ import { KBarSearchProvider } from '@/lib/search/kbar';
 import LenisProvider from '@/providers/LenisProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : process.env.NEXT_PUBLIC_BASE_URL || 'https://wyaaung.vercel.app';
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://wyaaung.vercel.app';
 
 export const metadata: Metadata = {
   title: {
@@ -23,12 +21,24 @@ export const metadata: Metadata = {
   description: siteMetaData.description,
   keywords: [
     siteMetaData.author,
-    'software engineer',
-    'portfolio',
-    'blog',
-    'THG',
-    'web development',
-    'programming',
+    'Software Engineer',
+    'Portfolio',
+    'Blog',
+    'Tech Blog',
+    'Web Development',
+    'Programming',
+    'JavaScript',
+    'TypeScript',
+    'React',
+    'Next.js',
+    'Node.js',
+    'CSS',
+    'Tailwind CSS',
+    'Java',
+    'Spring',
+    'Docker',
+    'Kubernetes',
+    'AWS',
   ].join(', '),
   authors: [{ name: siteMetaData.author, url: baseUrl }],
   creator: siteMetaData.author,
@@ -44,10 +54,6 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-  },
-  verification: {
-    // Add Google Search Console verification if you have one
-    // google: 'your-google-verification-code',
   },
   alternates: {
     canonical: baseUrl,

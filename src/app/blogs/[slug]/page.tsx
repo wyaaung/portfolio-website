@@ -21,9 +21,7 @@ export async function generateMetadata({
 
   const _publishedAt = new Date(blog.frontmatter.date).toISOString();
   const _modifiedAt = new Date(blog.frontmatter.lastmod || blog.frontmatter.date).toISOString();
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : process.env.NEXT_PUBLIC_BASE_URL || 'https://wyaaung.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://wyaaung.vercel.app';
   const url = `${baseUrl}/blogs/${slug}`;
 
   return {

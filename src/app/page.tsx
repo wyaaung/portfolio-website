@@ -6,14 +6,14 @@ import { ScrollProvider } from '@/providers/ScrollProvider';
 import Container from '@/wrappers/Container';
 
 export default async function Home() {
-  const blogs = allCoreContent(await getAllBlogs());
-  return (
-    <ScrollProvider>
-      <Hero />
-      <Intro />
-      <Container>
-        <RecentBlogs blogs={blogs} />
-      </Container>
-    </ScrollProvider>
-  );
+	const blogs = allCoreContent(await getAllBlogs());
+	return (
+		<ScrollProvider>
+			<Hero />
+			<Intro />
+			<Container>
+				<RecentBlogs blogs={blogs} />
+			</Container>
+		</ScrollProvider>
+	);
 }

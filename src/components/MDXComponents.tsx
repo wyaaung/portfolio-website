@@ -13,40 +13,40 @@ import type { BlogPost, MDXContent } from '@/lib/utils/mdx';
 import type { TableOfContent, TableOfContentInlineProps } from '@/types/TableOfContent';
 
 interface MDXLayout {
-  content: BlogPost | MDXContent;
-  toc?: TableOfContent;
-  [key: string]: unknown;
+	content: BlogPost | MDXContent;
+	toc?: TableOfContent;
+	[key: string]: unknown;
 }
 
 const components: MDXComponents = {
-  Image,
-  TableOfContentInline,
-  a: CustomLink,
-  pre: Pre,
-  LinkButton,
+	Image,
+	TableOfContentInline,
+	a: CustomLink,
+	pre: Pre,
+	LinkButton,
 };
 
 const MDXLayoutRenderer = ({ content, toc }: MDXLayout) => {
-  // Enhanced components with access to TOC data
-  const enhancedComponents: MDXComponents = {
-    ...components,
-    TableOfContentInline: (props: TableOfContentInlineProps) => (
-      <TableOfContentInline tableOfContentItems={content.toc || toc} {...props} />
-    ),
-  };
+	// Enhanced components with access to TOC data
+	const enhancedComponents: MDXComponents = {
+		...components,
+		TableOfContentInline: (props: TableOfContentInlineProps) => (
+			<TableOfContentInline tableOfContentItems={content.toc || toc} {...props} />
+		),
+	};
 
-  return (
-    <MDXRemote
-      source={content.content}
-      components={enhancedComponents}
-      options={{
-        mdxOptions: {
-          remarkPlugins: [remarkGfm],
-          rehypePlugins: [rehypeSlug, rehypePrismPlus],
-        },
-      }}
-    />
-  );
+	return (
+		<MDXRemote
+			source={content.content}
+			components={enhancedComponents}
+			options={{
+				mdxOptions: {
+					remarkPlugins: [remarkGfm],
+					rehypePlugins: [rehypeSlug, rehypePrismPlus],
+				},
+			}}
+		/>
+	);
 };
 
 export default MDXLayoutRenderer;

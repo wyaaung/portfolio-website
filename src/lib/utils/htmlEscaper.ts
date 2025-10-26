@@ -6,12 +6,12 @@ const { replace } = '';
 const ca = /[&<>'"]/g;
 
 const esca = {
-  '&': '&amp;',
-  '<': '&lt;',
-  '>': '&gt;',
-  // eslint-disable-next-line quotes
-  "'": '&#39;',
-  '"': '&quot;',
+	'&': '&amp;',
+	'<': '&lt;',
+	'>': '&gt;',
+	// eslint-disable-next-line quotes
+	"'": '&#39;',
+	'"': '&quot;',
 };
 const pe = (m: keyof typeof esca) => esca[m];
 

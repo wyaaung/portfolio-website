@@ -1,95 +1,95 @@
 import type {
-  NestedTableOfContentItem,
-  TableOfContentInlineProps,
-  TableOfContentItem,
+	NestedTableOfContentItem,
+	TableOfContentInlineProps,
+	TableOfContentItem,
 } from '@/types/TableOfContent';
 
 const createNestedList = (items: TableOfContentItem[]): NestedTableOfContentItem[] => {
-  const nestedList: NestedTableOfContentItem[] = [];
-  const stack: NestedTableOfContentItem[] = [];
+	const nestedList: NestedTableOfContentItem[] = [];
+	const stack: NestedTableOfContentItem[] = [];
 
-  items.forEach((item) => {
-    const newItem: NestedTableOfContentItem = { ...item };
+	items.forEach((item) => {
+		const newItem: NestedTableOfContentItem = { ...item };
 
-    while (stack.length > 0 && stack[stack.length - 1].depth >= newItem.depth) {
-      stack.pop();
-    }
+		while (stack.length > 0 && stack[stack.length - 1].depth >= newItem.depth) {
+			stack.pop();
+		}
 
-    const parent = stack.length > 0 ? stack[stack.length - 1] : null;
+		const parent = stack.length > 0 ? stack[stack.length - 1] : null;
 
-    if (parent) {
-      parent.children = parent.children || [];
-      parent.children.push(newItem);
-    } else {
-      nestedList.push(newItem);
-    }
+		if (parent) {
+			parent.children = parent.children || [];
+			parent.children.push(newItem);
+		} else {
+			nestedList.push(newItem);
+		}
 
-    stack.push(newItem);
-  });
+		stack.push(newItem);
+	});
 
-  return nestedList;
+	return nestedList;
 };
 
 const TableOfContentInline = ({
-  tableOfContentItems = [],
-  fromHeading = 1,
-  toHeading = 6,
-  asDisclosure = false,
-  exclude = '',
-  collapse = false,
+	tableOfContentItems = [],
+	fromHeading = 1,
+	toHeading = 6,
+	asDisclosure = false,
+	exclude = '',
+	collapse = false,
 }: TableOfContentInlineProps) => {
-  // Early return if no TOC items
-  if (!tableOfContentItems || tableOfContentItems.length === 0) {
-    return null;
-  }
+	// Early return if no TOC items
+	if (!tableOfContentItems || tableOfContentItems.length === 0) {
+		return null;
+	}
 
-  const re = Array.isArray(exclude)
-    ? new RegExp(`^(${exclude.join('|')})$`, 'i')
-    : new RegExp(`^(${exclude})$`, 'i');
+	const re = Array.isArray(exclude)
+		? new RegExp(`^(${exclude.join('|')})$`, 'i')
+		: new RegExp(`^(${exclude})$`, 'i');
 
-  const filteredTableOfContent = tableOfContentItems.filter(
-    (tableOfContentItem) =>
-      tableOfContentItem.depth >= fromHeading &&
-      tableOfContentItem.depth <= toHeading &&
-      !re.test(tableOfContentItem.value)
-  );
+	const filteredTableOfContent = tableOfContentItems.filter(
+		(tableOfContentItem) =>
+			tableOfContentItem.depth >= fromHeading &&
+			tableOfContentItem.depth <= toHeading &&
+			!re.test(tableOfContentItem.value),
+	);
 
-  const createList = (nestedTableofContentItems: NestedTableOfContentItem[] | undefined) => {
-    if (!nestedTableofContentItems || nestedTableofContentItems.length === 0) {
-      return null;
-    }
+	const createList = (nestedTableofContentItems: NestedTableOfContentItem[] | undefined) => {
+		if (!nestedTableofContentItems || nestedTableofContentItems.length === 0) {
+			return null;
+		}
 
-    return (
-      <ul className="mb-6">
-        {nestedTableofContentItems.map((nestedTableofContentItem) => (
-          <li key={nestedTableofContentItem.url}>
-            <a
-              href={nestedTableofContentItem.url}
-              className="not-prose border-cyan-400 border-b no-underline dark:border-cyan-500"
-            >
-              {nestedTableofContentItem.value}
-            </a>
-            {createList(nestedTableofContentItem.children)}
-          </li>
-        ))}
-      </ul>
-    );
-  };
+		return (
+			<ul className='mb-6'>
+				{nestedTableofContentItems.map((nestedTableofContentItem) => (
+					<li key={nestedTableofContentItem.url}>
+						<a
+							href={nestedTableofContentItem.url}
+							className='not-prose border-cyan-400 border-b no-underline dark:border-cyan-500'
+						>
+							{nestedTableofContentItem.value}
+						</a>
+						{createList(nestedTableofContentItem.children)}
+					</li>
+				))}
+			</ul>
+		);
+	};
 
-  const nestedTableOfContentItems = createNestedList(filteredTableOfContent);
+	const nestedTableOfContentItems = createNestedList(filteredTableOfContent);
 
-  return (
-    <>
-      {asDisclosure ? (
-        <details open={!collapse}>
-          <summary className="ml-6 pt-2 pb-2 font-bold text-xl">Table of Contents</summary>
-          <div className="ml-6">{createList(nestedTableOfContentItems)}</div>
-        </details>
-      ) : (
-        createList(nestedTableOfContentItems)
-      )}
-    </>
-  );
+	return (
+		<>
+			{asDisclosure ? (
+				<details open={!collapse}>
+					<summary className='ml-6 pt-2 pb-2 font-bold text-xl'>Table of Contents</summary>
+					<div className='ml-6'>{createList(nestedTableOfContentItems)}</div>
+				</details>
+			) : (
+				createList(nestedTableOfContentItems)
+			)}
+		</>
+	);
 };
 
 export default TableOfContentInline;

@@ -18,7 +18,7 @@
   ],
   "formatter": {
     "enabled": true,
-    "indentStyle": "space",
+    "indentStyle": "tab",
     "indentWidth": 2,
     "lineWidth": 100,
     "lineEnding": "lf"
@@ -27,23 +27,42 @@
     "enabled": true,
     "rules": {
       "recommended": true,
-      "correctness": {
-        "noUnusedVariables": "error",
-        "noUnusedImports": "error",
-        "useExhaustiveDependencies": "warn"
-      },
-      "style": {
-        "noNonNullAssertion": "warn",
-        "useImportType": "error",
-        "useNodejsImportProtocol": "error",
-        "useConsistentArrayType": "error",
-        "useForOf": "error"
+      "a11y": {
+        "recommended": true,
+        "noAccessKey": "error",
+        "noAriaUnsupportedElements": "error",
+        "noStaticElementInteractions": "warn",
+        "noSvgWithoutTitle": "warn",
+        "useAltText": "error",
+        "useButtonType": "warn",
+        "useKeyWithClickEvents": "error",
+        "useValidAnchor": "error"
       },
       "complexity": {
-        "noBannedTypes": "error",
-        "noUselessConstructor": "error"
+        "recommended": true,
+        "noUselessFragments": "error",
+        "noUselessTernary": "error",
+        "useOptionalChain": "error"
+      },
+      "correctness": {
+        "recommended": true,
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error",
+        "useExhaustiveDependencies": "warn",
+        "useHookAtTopLevel": "error"
+      },
+      "style": {
+        "recommended": true,
+        "noNegationElse": "off",
+        "noNonNullAssertion": "warn",
+        "useConsistentArrayType": "error",
+        "useForOf": "error",
+        "useImportType": "error",
+        "useNodejsImportProtocol": "error",
+        "useNumberNamespace": "error"
       },
       "suspicious": {
+        "recommended": true,
         "noExplicitAny": "warn",
         "noArrayIndexKey": "warn",
         "noConfusingVoidType": "error"
@@ -62,9 +81,17 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
-      "jsxQuoteStyle": "double",
+      "jsxQuoteStyle": "single",
       "semicolons": "always",
-      "trailingCommas": "es5"
+      "trailingCommas": "all",
+      "arrowParentheses": "always"
+    }
+  },
+  "json": {
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "indentWidth": 2
     }
   },
   "assist": {

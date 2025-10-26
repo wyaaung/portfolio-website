@@ -9,43 +9,43 @@ import type { TableOfContent } from '@/types/TableOfContent';
 
 // Simple slug function that matches rehype-slug behavior
 function createSlug(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/[^\w-]+/g, '');
+	return text
+		.toLowerCase()
+		.trim()
+		.replace(/\s+/g, '-')
+		.replace(/[^\w-]+/g, '');
 }
 
 /**
  * Extracts TOC headings from markdown file and adds it to the file's data object.
  */
 export function remarkTocHeadings() {
-  return (tree: Parent, file: VFile) => {
-    const toc: TableOfContent = [];
-    const usedSlugs = new Set<string>();
+	return (tree: Parent, file: VFile) => {
+		const toc: TableOfContent = [];
+		const usedSlugs = new Set<string>();
 
-    visit(tree, 'heading', (node: Heading) => {
-      const textContent = mdastToString(node);
-      const baseSlug = createSlug(textContent);
-      let finalSlug = baseSlug;
-      let counter = 1;
+		visit(tree, 'heading', (node: Heading) => {
+			const textContent = mdastToString(node);
+			const baseSlug = createSlug(textContent);
+			let finalSlug = baseSlug;
+			let counter = 1;
 
-      // Handle duplicates by adding numbers
-      while (usedSlugs.has(finalSlug)) {
-        finalSlug = `${baseSlug}-${counter}`;
-        counter++;
-      }
+			// Handle duplicates by adding numbers
+			while (usedSlugs.has(finalSlug)) {
+				finalSlug = `${baseSlug}-${counter}`;
+				counter++;
+			}
 
-      usedSlugs.add(finalSlug);
+			usedSlugs.add(finalSlug);
 
-      toc.push({
-        value: textContent,
-        url: `#${finalSlug}`,
-        depth: node.depth,
-      });
-    });
-    file.data.toc = toc;
-  };
+			toc.push({
+				value: textContent,
+				url: `#${finalSlug}`,
+				depth: node.depth,
+			});
+		});
+		file.data.toc = toc;
+	};
 }
 
 /**
@@ -55,7 +55,7 @@ export function remarkTocHeadings() {
  * @return {*}  {Promise<Toc>}
  */
 export async function extractTocHeadings(markdown: string): Promise<TableOfContent> {
-  const vfile = await remark().use(remarkTocHeadings).process(markdown);
-  // @ts-expect-error  Can Be Nullable
-  return vfile.data.toc;
+	const vfile = await remark().use(remarkTocHeadings).process(markdown);
+	// @ts-expect-error  Can Be Nullable
+	return vfile.data.toc;
 }

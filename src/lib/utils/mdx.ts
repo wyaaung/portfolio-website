@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
+import { cache } from 'react';
 import readingTime from 'reading-time';
 import type { TableOfContent } from '@/types/TableOfContent';
 import { extractTocHeadings } from '../remark-toc-headings';
@@ -214,3 +215,29 @@ export async function createSearchIndex(): Promise<void> {
 	const searchIndexPath = path.join(process.cwd(), 'public', 'search.json');
 	fs.writeFileSync(searchIndexPath, JSON.stringify(searchData, null, 2));
 }
+
+// Cached versions of the functions for performance optimization
+export const getCachedAllBlogs = cache(getAllBlogs);
+export const getCachedBlogBySlug = cache(getBlogBySlug);
+
+// Optimized function that gets blog with navigation in a single operation
+export const getBlogWithNavigation = cache(
+	async (
+		slug: string,
+	): Promise<{
+		blog: BlogPost;
+		prev: CoreContent<BlogPost> | null;
+		next: CoreContent<BlogPost> | null;
+	} | null> => {
+		const allBlogs = await getCachedAllBlogs();
+		const currentIndex = allBlogs.findIndex((blog) => blog.slug === slug);
+
+		if (currentIndex === -1) return null;
+
+		return {
+			blog: allBlogs[currentIndex],
+			prev: allBlogs[currentIndex + 1] ? coreContent(allBlogs[currentIndex + 1]) : null,
+			next: allBlogs[currentIndex - 1] ? coreContent(allBlogs[currentIndex - 1]) : null,
+		};
+	},
+);

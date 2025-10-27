@@ -5,7 +5,21 @@ import MDXLayoutRenderer from '@/components/MDXComponents';
 import { siteMetaData } from '@/data/siteMetaData';
 import MainLayout from '@/layouts/MainLayout';
 import BlogLayout from '@/layouts/mdx/BlogLayout';
-import { coreContent, formatBlogLink, getAllBlogs, getBlogBySlug } from '@/lib/utils/mdx';
+import {
+	coreContent,
+	formatBlogLink,
+	getBlogWithNavigation,
+	getCachedAllBlogs,
+	getCachedBlogBySlug,
+} from '@/lib/utils/mdx';
+
+// Generate static params for all blog posts for better performance
+export async function generateStaticParams() {
+	const blogs = await getCachedAllBlogs();
+	return blogs.map((blog) => ({
+		slug: blog.slug,
+	}));
+}
 
 export async function generateMetadata({
 	params,
@@ -13,7 +27,7 @@ export async function generateMetadata({
 	params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
 	const { slug } = await params;
-	const blog = await getBlogBySlug(slug);
+	const blog = await getCachedBlogBySlug(slug);
 
 	if (!blog) {
 		return {};
@@ -50,19 +64,15 @@ export async function generateMetadata({
 
 const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 	const { slug } = await params;
-	const sortedBlogs = await getAllBlogs();
 
-	const blog = await getBlogBySlug(slug);
-	const postIndex = sortedBlogs.findIndex((blog) => blog.slug === slug);
+	// Use the optimized function that gets blog and navigation in one operation
+	const result = await getBlogWithNavigation(slug);
 
-	const prevContent = sortedBlogs[postIndex + 1] || null;
-	const prev = prevContent ? coreContent(prevContent) : null;
-	const nextContent = sortedBlogs[postIndex - 1] || null;
-	const next = nextContent ? coreContent(nextContent) : null;
-
-	if (!blog) {
+	if (!result) {
 		return notFound();
 	}
+
+	const { blog, prev, next } = result;
 
 	return (
 		<MainLayout>

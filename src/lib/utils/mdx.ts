@@ -77,10 +77,20 @@ export function readMDXFile(filePath: string): {
 	return { frontmatter: data, content };
 }
 
+// Cache for pre-computed content to avoid repeated file system operations
+const contentCache = new Map<string, MDXContent[]>();
+
 export async function getMDXContent(
 	type: 'blogs' | 'author',
 	slug?: string,
 ): Promise<MDXContent[]> {
+	const cacheKey = `${type}-${slug || 'all'}`;
+
+	// Check cache first
+	if (contentCache.has(cacheKey)) {
+		return contentCache.get(cacheKey)!;
+	}
+
 	const dir = path.join(contentDirectory, type);
 	const files = getMDXFiles(dir);
 
@@ -104,6 +114,8 @@ export async function getMDXContent(
 			}),
 	);
 
+	// Cache the result
+	contentCache.set(cacheKey, content);
 	return content;
 }
 
@@ -192,9 +204,12 @@ export function formatBlogLink(
 	return blog ? { title: blog.frontmatter.title, slug: blog.slug } : undefined;
 }
 
-// Function to create search index (replaces the contentlayer onSuccess callback)
+// Function to create search index and warm caches (replaces the contentlayer onSuccess callback)
 export async function createSearchIndex(): Promise<void> {
 	const allBlogs = await getAllBlogs();
+
+	// Warm navigation index cache
+	await buildNavigationIndex();
 
 	// Create flattened search data with the structure expected by the search
 	const searchData = allBlogs.map((blog) => ({
@@ -216,11 +231,42 @@ export async function createSearchIndex(): Promise<void> {
 	fs.writeFileSync(searchIndexPath, JSON.stringify(searchData, null, 2));
 }
 
+// Function to warm all caches at build time
+export async function warmCaches(): Promise<void> {
+	console.log('Warming MDX caches...');
+	await getAllBlogs();
+	await buildNavigationIndex();
+	console.log('MDX caches warmed successfully');
+}
+
 // Cached versions of the functions for performance optimization
 export const getCachedAllBlogs = cache(getAllBlogs);
 export const getCachedBlogBySlug = cache(getBlogBySlug);
 
-// Optimized function that gets blog with navigation in a single operation
+// Navigation index cache to avoid loading all blogs for navigation
+let navigationIndex: Map<string, { prevSlug?: string; nextSlug?: string }> | null = null;
+
+// Build navigation index once
+async function buildNavigationIndex(): Promise<
+	Map<string, { prevSlug?: string; nextSlug?: string }>
+> {
+	if (navigationIndex) return navigationIndex;
+
+	const allBlogs = await getCachedAllBlogs();
+	const index = new Map<string, { prevSlug?: string; nextSlug?: string }>();
+
+	allBlogs.forEach((blog, i) => {
+		index.set(blog.slug, {
+			prevSlug: allBlogs[i + 1]?.slug,
+			nextSlug: allBlogs[i - 1]?.slug,
+		});
+	});
+
+	navigationIndex = index;
+	return index;
+}
+
+// Optimized function that gets blog with navigation using pre-computed index
 export const getBlogWithNavigation = cache(
 	async (
 		slug: string,
@@ -229,15 +275,26 @@ export const getBlogWithNavigation = cache(
 		prev: CoreContent<BlogPost> | null;
 		next: CoreContent<BlogPost> | null;
 	} | null> => {
-		const allBlogs = await getCachedAllBlogs();
-		const currentIndex = allBlogs.findIndex((blog) => blog.slug === slug);
+		// Get the specific blog
+		const blog = await getCachedBlogBySlug(slug);
+		if (!blog) return null;
 
-		if (currentIndex === -1) return null;
+		// Get navigation info from index
+		const navIndex = await buildNavigationIndex();
+		const navInfo = navIndex.get(slug);
+
+		if (!navInfo) return { blog, prev: null, next: null };
+
+		// Only fetch navigation blogs if they exist
+		const [prev, next] = await Promise.all([
+			navInfo.prevSlug ? getCachedBlogBySlug(navInfo.prevSlug) : null,
+			navInfo.nextSlug ? getCachedBlogBySlug(navInfo.nextSlug) : null,
+		]);
 
 		return {
-			blog: allBlogs[currentIndex],
-			prev: allBlogs[currentIndex + 1] ? coreContent(allBlogs[currentIndex + 1]) : null,
-			next: allBlogs[currentIndex - 1] ? coreContent(allBlogs[currentIndex - 1]) : null,
+			blog,
+			prev: prev ? coreContent(prev) : null,
+			next: next ? coreContent(next) : null,
 		};
 	},
 );

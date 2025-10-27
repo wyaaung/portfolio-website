@@ -1,5 +1,6 @@
 import type { Heading } from 'mdast';
 import { toString as mdastToString } from 'mdast-util-to-string';
+import { cache } from 'next/cache';
 import { remark } from 'remark';
 import type { Parent } from 'unist';
 import { visit } from 'unist-util-visit';
@@ -54,8 +55,11 @@ export function remarkTocHeadings() {
  * @param {string} markdown
  * @return {*}  {Promise<Toc>}
  */
-export async function extractTocHeadings(markdown: string): Promise<TableOfContent> {
+async function extractTocHeadingsInternal(markdown: string): Promise<TableOfContent> {
 	const vfile = await remark().use(remarkTocHeadings).process(markdown);
 	// @ts-expect-error  Can Be Nullable
 	return vfile.data.toc;
 }
+
+// Cached version for performance optimization
+export const extractTocHeadings = cache(extractTocHeadingsInternal);

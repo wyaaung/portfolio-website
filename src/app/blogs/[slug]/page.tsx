@@ -21,6 +21,9 @@ export async function generateStaticParams() {
 	}));
 }
 
+// Enable ISR with 1 hour revalidation for dynamic content updates
+export const revalidate = 3600; // 1 hour
+
 export async function generateMetadata({
 	params,
 }: {

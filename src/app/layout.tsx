@@ -71,6 +71,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 			<link rel='apple-touch-icon' sizes='76x76' href='/favicon.ico' />
 			<link rel='icon' type='image/png' sizes='32x32' href='/favicon.ico' />
 			<link rel='icon' type='image/png' sizes='16x16' href='/favicon.ico' />
+			<meta name='google-site-verification' content='o6lD8L92JEKr5dg_KVv4CjgjT2Fxa803cY8VsodbQDA' />
 			<meta name='theme-color' media='(prefers-color-scheme: light)' content='#fff' />
 			<meta name='theme-color' media='(prefers-color-scheme: dark)' content='#000' />
 			<link rel='alternate' type='application/rss+xml' href={`${basePath}/feed.xml`} />

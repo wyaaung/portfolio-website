@@ -5,7 +5,9 @@ import React from 'react';
 import { siteMetaData } from '@/data/siteMetaData';
 import Container from '@/wrappers/Container';
 
-const Footer = () => {
+const Footer = async () => {
+	'use cache';
+
 	return (
 		<Container>
 			<footer>

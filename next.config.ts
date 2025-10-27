@@ -23,6 +23,7 @@ const bundleAnalyzer = withBundleAnalyzer({
 
 const nextConfig: NextConfig = (() => {
 	const baseConfig: NextConfig = {
+		cacheComponents: true,
 		reactStrictMode: true,
 		pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
 		transpilePackages: ['next-mdx-remote'],
@@ -31,7 +32,6 @@ const nextConfig: NextConfig = (() => {
 		},
 		experimental: {
 			turbopackFileSystemCacheForDev: true,
-			cacheComponents: true,
 		},
 	};
 

@@ -3,12 +3,11 @@
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 import Link from 'next/link';
-import React from 'react';
-
+import { useEffect, useRef } from 'react';
 import { renderCanvas } from './renderCanvas';
 
 const Hero = () => {
-	const ref = React.useRef<HTMLHeadingElement>(null);
+	const ref = useRef<HTMLHeadingElement>(null);
 
 	let progress = 0;
 	const { current: elContainer } = ref;
@@ -17,7 +16,7 @@ const Hero = () => {
 		progress = Math.min(1, scrollY / elContainer.clientHeight);
 	}
 
-	React.useEffect(() => {
+	useEffect(() => {
 		renderCanvas();
 	}, []);
 

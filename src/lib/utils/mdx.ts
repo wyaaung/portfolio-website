@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
-import { cache } from 'next/cache';
+import { unstable_cache } from 'next/cache';
 import readingTime from 'reading-time';
 import type { TableOfContent } from '@/types/TableOfContent';
 import { extractTocHeadings } from '../remark-toc-headings';
@@ -240,8 +240,8 @@ export async function warmCaches(): Promise<void> {
 }
 
 // Cached versions of the functions for performance optimization
-export const getCachedAllBlogs = cache(getAllBlogs);
-export const getCachedBlogBySlug = cache(getBlogBySlug);
+export const getCachedAllBlogs = unstable_cache(getAllBlogs);
+export const getCachedBlogBySlug = unstable_cache(getBlogBySlug);
 
 // Navigation index cache to avoid loading all blogs for navigation
 let navigationIndex: Map<string, { prevSlug?: string; nextSlug?: string }> | null = null;
@@ -267,7 +267,7 @@ async function buildNavigationIndex(): Promise<
 }
 
 // Optimized function that gets blog with navigation using pre-computed index
-export const getBlogWithNavigation = cache(
+export const getBlogWithNavigation = unstable_cache(
 	async (
 		slug: string,
 	): Promise<{

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
-import { cache } from 'react';
+import { cache } from 'next/cache';
 import readingTime from 'reading-time';
 import type { TableOfContent } from '@/types/TableOfContent';
 import { extractTocHeadings } from '../remark-toc-headings';

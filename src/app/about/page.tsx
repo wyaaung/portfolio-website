@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next/types';
 
 import MDXLayoutRenderer from '@/components/MDXComponents';
 import { siteMetaData } from '@/data/siteMetaData';

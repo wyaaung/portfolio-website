@@ -1,7 +1,7 @@
 import '@/css/prism.css';
 import '@/css/tailwind.css';
 
-import type { Metadata } from 'next';
+import type { Metadata } from 'next/types';
 
 import Analytics from '@/components/Analytics';
 import Footer from '@/components/Footer';

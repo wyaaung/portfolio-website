@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata } from 'next/types';
 import { siteMetaData } from '@/data/siteMetaData';
 import MainLayout from '@/layouts/MainLayout';
 import BlogListLayout from '@/layouts/mdx/BlogListLayout';

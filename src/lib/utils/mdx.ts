@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
-import { unstable_cache } from 'next/cache';
 import readingTime from 'reading-time';
 import type { TableOfContent } from '@/types/TableOfContent';
 import { extractTocHeadings } from '../remark-toc-headings';
@@ -88,7 +87,7 @@ export async function getMDXContent(
 
 	// Check cache first
 	if (contentCache.has(cacheKey)) {
-		return contentCache.get(cacheKey)!;
+		return contentCache.get(cacheKey) as MDXContent[];
 	}
 
 	const dir = path.join(contentDirectory, type);
@@ -240,8 +239,14 @@ export async function warmCaches(): Promise<void> {
 }
 
 // Cached versions of the functions for performance optimization
-export const getCachedAllBlogs = unstable_cache(getAllBlogs);
-export const getCachedBlogBySlug = unstable_cache(getBlogBySlug);
+export async function getCachedAllBlogs(): Promise<BlogPost[]> {
+	'use cache';
+	return getAllBlogs();
+}
+export async function getCachedBlogBySlug(slug: string): Promise<BlogPost | null> {
+	'use cache';
+	return getBlogBySlug(slug);
+}
 
 // Navigation index cache to avoid loading all blogs for navigation
 let navigationIndex: Map<string, { prevSlug?: string; nextSlug?: string }> | null = null;
@@ -267,34 +272,32 @@ async function buildNavigationIndex(): Promise<
 }
 
 // Optimized function that gets blog with navigation using pre-computed index
-export const getBlogWithNavigation = unstable_cache(
-	async (
-		slug: string,
-	): Promise<{
-		blog: BlogPost;
-		prev: CoreContent<BlogPost> | null;
-		next: CoreContent<BlogPost> | null;
-	} | null> => {
-		// Get the specific blog
-		const blog = await getCachedBlogBySlug(slug);
-		if (!blog) return null;
+export async function getBlogWithNavigation(slug: string): Promise<{
+	blog: BlogPost;
+	prev: CoreContent<BlogPost> | null;
+	next: CoreContent<BlogPost> | null;
+} | null> {
+	'use cache';
 
-		// Get navigation info from index
-		const navIndex = await buildNavigationIndex();
-		const navInfo = navIndex.get(slug);
+	// Get the specific blog
+	const blog = await getCachedBlogBySlug(slug);
+	if (!blog) return null;
 
-		if (!navInfo) return { blog, prev: null, next: null };
+	// Get navigation info from index
+	const navIndex = await buildNavigationIndex();
+	const navInfo = navIndex.get(slug);
 
-		// Only fetch navigation blogs if they exist
-		const [prev, next] = await Promise.all([
-			navInfo.prevSlug ? getCachedBlogBySlug(navInfo.prevSlug) : null,
-			navInfo.nextSlug ? getCachedBlogBySlug(navInfo.nextSlug) : null,
-		]);
+	if (!navInfo) return { blog, prev: null, next: null };
 
-		return {
-			blog,
-			prev: prev ? coreContent(prev) : null,
-			next: next ? coreContent(next) : null,
-		};
-	},
-);
+	// Only fetch navigation blogs if they exist
+	const [prev, next] = await Promise.all([
+		navInfo.prevSlug ? getCachedBlogBySlug(navInfo.prevSlug) : null,
+		navInfo.nextSlug ? getCachedBlogBySlug(navInfo.nextSlug) : null,
+	]);
+
+	return {
+		blog,
+		prev: prev ? coreContent(prev) : null,
+		next: next ? coreContent(next) : null,
+	};
+}

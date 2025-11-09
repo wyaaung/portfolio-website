@@ -10,7 +10,8 @@ import { siteMetaData } from '@/data/siteMetaData';
 import { KBarSearchProvider } from '@/lib/search/kbar';
 import LenisProvider from '@/providers/LenisProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
-import { roboto } from './fonts';
+
+// import { roboto } from './fonts';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://wyaaung.vercel.app';
 
@@ -67,7 +68,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	const basePath = process.env.BASE_PATH || '';
 	return (
-		<html lang={siteMetaData.language} className={roboto.className} suppressHydrationWarning>
+		<html lang={siteMetaData.language} suppressHydrationWarning>
 			<link rel='apple-touch-icon' sizes='76x76' href='/favicon.ico' />
 			<link rel='icon' type='image/png' sizes='32x32' href='/favicon.ico' />
 			<link rel='icon' type='image/png' sizes='16x16' href='/favicon.ico' />

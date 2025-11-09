@@ -8,14 +8,14 @@ import BlogLayout from '@/layouts/mdx/BlogLayout';
 import {
 	coreContent,
 	formatBlogLink,
+	getAllBlogs,
+	getBlogBySlug,
 	getBlogWithNavigation,
-	getCachedAllBlogs,
-	getCachedBlogBySlug,
 } from '@/lib/utils/mdx';
 
-// Generate static params for all blog posts for better performance
+// Generate static params for all blog posts
 export async function generateStaticParams() {
-	const blogs = await getCachedAllBlogs();
+	const blogs = await getAllBlogs();
 	return blogs.map((blog) => ({
 		slug: blog.slug,
 	}));
@@ -27,7 +27,7 @@ export async function generateMetadata({
 	params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
 	const { slug } = await params;
-	const blog = await getCachedBlogBySlug(slug);
+	const blog = await getBlogBySlug(slug);
 
 	if (!blog) {
 		return {};

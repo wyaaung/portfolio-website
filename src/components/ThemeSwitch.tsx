@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Moon, Sun } from 'lucide-react';
+import { motion } from 'motion/react';
 import { useTheme } from 'next-themes';
 import React from 'react';
 

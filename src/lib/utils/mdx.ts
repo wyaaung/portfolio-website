@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
-import { unstable_cache } from 'next/cache';
 import readingTime from 'reading-time';
 import type { TableOfContent } from '@/types/TableOfContent';
 import { extractTocHeadings } from '../remark-toc-headings';
@@ -192,52 +191,20 @@ export function formatBlogLink(
 	return blog ? { title: blog.frontmatter.title, slug: blog.slug } : undefined;
 }
 
-// Function to create search index (replaces the contentlayer onSuccess callback)
-export async function createSearchIndex(): Promise<void> {
+// Function to get blog with navigation
+export async function getBlogWithNavigation(slug: string): Promise<{
+	blog: BlogPost;
+	prev: CoreContent<BlogPost> | null;
+	next: CoreContent<BlogPost> | null;
+} | null> {
 	const allBlogs = await getAllBlogs();
+	const currentIndex = allBlogs.findIndex((blog) => blog.slug === slug);
 
-	// Create flattened search data with the structure expected by the search
-	const searchData = allBlogs.map((blog) => ({
-		title: blog.frontmatter.title,
-		date: blog.frontmatter.date,
-		tags: blog.frontmatter.tags,
-		draft: blog.frontmatter.draft,
-		summary: blog.frontmatter.summary,
-		type: 'Blog',
-		readingTime: blog.readingTime,
-		slug: blog.slug,
-		path: `blogs/${blog.slug}`,
-		filePath: blog.filePath,
-		toc: blog.toc,
-		structuredData: blog.structuredData,
-	}));
+	if (currentIndex === -1) return null;
 
-	const searchIndexPath = path.join(process.cwd(), 'public', 'search.json');
-	fs.writeFileSync(searchIndexPath, JSON.stringify(searchData, null, 2));
+	return {
+		blog: allBlogs[currentIndex],
+		prev: allBlogs[currentIndex + 1] ? coreContent(allBlogs[currentIndex + 1]) : null,
+		next: allBlogs[currentIndex - 1] ? coreContent(allBlogs[currentIndex - 1]) : null,
+	};
 }
-
-// Cached versions of the functions for performance optimization
-export const getCachedAllBlogs = unstable_cache(getAllBlogs);
-export const getCachedBlogBySlug = unstable_cache(getBlogBySlug);
-
-// Optimized function that gets blog with navigation in a single operation
-export const getBlogWithNavigation = unstable_cache(
-	async (
-		slug: string,
-	): Promise<{
-		blog: BlogPost;
-		prev: CoreContent<BlogPost> | null;
-		next: CoreContent<BlogPost> | null;
-	} | null> => {
-		const allBlogs = await getCachedAllBlogs();
-		const currentIndex = allBlogs.findIndex((blog) => blog.slug === slug);
-
-		if (currentIndex === -1) return null;
-
-		return {
-			blog: allBlogs[currentIndex],
-			prev: allBlogs[currentIndex + 1] ? coreContent(allBlogs[currentIndex + 1]) : null,
-			next: allBlogs[currentIndex - 1] ? coreContent(allBlogs[currentIndex - 1]) : null,
-		};
-	},
-);
